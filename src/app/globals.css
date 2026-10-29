@@ -1,0 +1,215 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Metropolitan design system: Inter throughout; palette from the logo green on warm neutrals. */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-inter);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-brand: var(--brand);
+  --color-forest: var(--forest);
+  --color-forest-dark: var(--forest-dark);
+  --color-leaf: var(--leaf);
+  --color-sage: var(--sage);
+  --color-sage-2: var(--sage-2);
+  --color-sand: var(--sand);
+  --color-ink-2: var(--ink-2);
+  --color-line-strong: var(--line-strong);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-cta-border: var(--cta-border);
+  --color-soft: var(--soft);
+  --color-soft-hover: var(--soft-hover);
+  --color-soft-border: var(--soft-border);
+  --color-soft-foreground: var(--soft-foreground);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.6);
+}
+
+:root {
+  --brand: #58b838;        /* logo green: decorative use only, fails contrast as text */
+  --forest: #1a4a2b;
+  --forest-dark: #12301d;
+  --leaf: #22613a;
+  --sage: #edf4e6;
+  --sage-2: #dcead0;
+  --sand: #f4eee4;
+  --ink-2: #3f4a43;
+  --line-strong: #d6cdbf;
+  --cta: #3a8440;          /* soft green: primary call to action (4.6:1 with white text) */
+  --cta-hover: #2f7035;
+  --cta-border: #68a862;   /* lighter rim around the green fill */
+  --soft: #e4ebda;         /* pale sage: secondary call to action */
+  --soft-hover: #d6e2c9;
+  --soft-border: #c3d2b5;
+  --soft-foreground: #2e6e33;
+  --background: #fbf8f2;
+  --foreground: #1d2a22;
+  --card: #ffffff;
+  --card-foreground: #1d2a22;
+  --popover: #ffffff;
+  --popover-foreground: #1d2a22;
+  --primary: #1a4a2b;
+  --primary-foreground: #ffffff;
+  --secondary: #f4eee4;
+  --secondary-foreground: #1d2a22;
+  --muted: #f4eee4;
+  --muted-foreground: #646b63;
+  --accent: #edf4e6;
+  --accent-foreground: #1a4a2b;
+  --destructive: #a3321a;
+  --border: #e4ddd1;
+  --input: #d6cdbf;
+  --ring: #1a4a2b;
+  --radius: 0.625rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-smooth font-sans;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-[1.0625rem] leading-relaxed text-foreground antialiased;
+  }
+  h1,
+  h2 {
+    @apply font-display font-semibold tracking-[-0.025em] text-balance;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-3 outline-forest;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
+
+/* Small pill label above headings. */
+@utility eyebrow {
+  @apply inline-flex h-fit w-fit items-center self-start rounded-full border border-line-strong bg-card px-3.5 py-1 text-[0.875rem] font-medium text-foreground;
+}
+
+/* Scroll entrance, toggled by src/layout/reveal.tsx: rise, fade and un-blur. All three run the same length so one transitionend means done. */
+.reveal {
+  opacity: 0;
+  transform: translateY(44px);
+  filter: blur(8px);
+}
+.reveal.reveal-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  /* Long-form text: blog articles and legal pages (HTML comes from content/*.md). */
+  .prose-article {
+    @apply max-w-[720px] text-lg leading-[1.75] text-foreground;
+    & h2 {
+      @apply mt-12 mb-3 font-display text-[1.75rem] leading-tight font-semibold tracking-[-0.02em];
+    }
+    & h3 {
+      @apply mt-8 mb-2 text-lg font-semibold;
+    }
+    & p {
+      @apply mb-5;
+    }
+    & ul {
+      @apply mb-5;
+    }
+    & ul li {
+      @apply relative mb-2 pl-8;
+      &::before {
+        content: "";
+        @apply absolute top-[0.4em] left-0 size-[18px] rounded-full bg-sage-2 bg-center bg-no-repeat;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%231a4a2b' stroke-width='3' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E");
+      }
+    }
+    & ol {
+      @apply mb-5 list-decimal pl-6;
+    }
+    & ol li {
+      @apply mb-2 marker:text-leaf;
+    }
+    & a {
+      @apply text-leaf underline underline-offset-3 hover:text-forest-dark;
+    }
+    & blockquote {
+      @apply my-6 rounded-r-md border-l-3 border-leaf bg-sand px-5 py-4 text-base;
+    }
+    & blockquote p {
+      @apply mb-0;
+    }
+  }
+
+  .checklist li {
+    @apply relative py-2 pl-8;
+    &::before {
+      content: "";
+      @apply absolute top-3.5 left-0 size-[18px] rounded-full bg-sage-2 bg-center bg-no-repeat;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%231a4a2b' stroke-width='3' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E");
+    }
+  }
+
+  /* Numbered steps with a connecting line. */
+  .steps {
+    counter-reset: step;
+    & li {
+      counter-increment: step;
+      @apply relative pb-8 pl-16 last:pb-0;
+    }
+    & li::before {
+      content: counter(step);
+      @apply absolute -top-0.5 left-0 grid size-[42px] place-items-center rounded-full border-[1.5px] border-leaf bg-card font-display text-lg text-forest;
+    }
+    & li:not(:last-child)::after {
+      content: "";
+      @apply absolute top-[46px] bottom-1.5 left-5 w-[1.5px] bg-line-strong;
+    }
+  }
+}

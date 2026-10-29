@@ -1,0 +1,32 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/blog/1", "destination": "/blog/future-of-home-healthcare", "permanent": true },
+    { "source": "/blog/2", "destination": "/blog/medicare-coverage-home-health-care", "permanent": true },
+    { "source": "/blog/3", "destination": "/blog/home-safety-for-older-adults", "permanent": true },
+    { "source": "/blog/4", "destination": "/blog/mental-health-support-home-health", "permanent": true },
+    { "source": "/blog/5", "destination": "/blog/nutrition-for-recovery-at-home", "permanent": true },
+    { "source": "/blog/6", "destination": "/blog/physical-therapy-at-home", "permanent": true },
+    { "source": "/blog/7", "destination": "/blog/managing-diabetes-at-home", "permanent": true },
+    { "source": "/blog/8", "destination": "/blog/wound-care-at-home", "permanent": true },
+    { "source": "/blog/9", "destination": "/blog/medication-management-at-home", "permanent": true },
+    { "source": "/awards", "destination": "/certificates", "permanent": true },
+    { "source": "/services/home-maker", "destination": "/services/homemaker", "permanent": true },
+    { "source": "/insurance/:id", "destination": "/insurance", "permanent": true },
+    { "source": "/logo.png", "destination": "/images/logos/logo.png", "permanent": true },
+    { "source": "/favicon.png", "destination": "/images/logos/favicon-32.png", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/images/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  ]
+}

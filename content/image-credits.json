@@ -1,0 +1,212 @@
+[
+  {
+    "file": "public/images/pages/hero-nurse-visit.webp",
+    "source": "https://images.unsplash.com/photo-1765896387387-0538bc9f997e",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/pages/about-care.webp",
+    "source": "https://images.unsplash.com/photo-1765896387398-1e1ae8d2eb85",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/pages/about-team.webp",
+    "source": "https://images.unsplash.com/photo-1765896387377-e293914d1e69",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/services/skilled-nursing.webp",
+    "source": "https://images.unsplash.com/photo-1631815590016-ebce183022ce",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/services/physical-therapy.webp",
+    "source": "https://images.unsplash.com/photo-1723433892471-62f113c8c9a0",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/services/health-aide.webp",
+    "source": "https://images.unsplash.com/photo-1773227055624-07b515ba87c5",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/services/social-worker.webp",
+    "source": "https://images.unsplash.com/photo-1758691462321-9b6c98c40f7e",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/services/speech-therapy.webp",
+    "source": "https://images.unsplash.com/photo-1773227059784-c1e36cc8c8c9",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/services/occupational-therapy.webp",
+    "source": "https://images.unsplash.com/photo-1762955911431-4c44c7c3f408",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/services/specialized-care.webp",
+    "source": "https://images.unsplash.com/photo-1631558556874-1d127211f574",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/services/palliative-care.webp",
+    "source": "https://images.unsplash.com/photo-1625690987114-86f5af994b49",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/services/infusion-therapy.webp",
+    "source": "https://images.unsplash.com/photo-1763310225009-50214e3c99d9",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/services/homemaker.webp",
+    "source": "https://images.unsplash.com/photo-1758691031152-2a727e97e6b6",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/pages/service-areas.webp",
+    "source": "https://images.unsplash.com/photo-1781636062623-1334c999d28f",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/pages/chicago-homes.webp",
+    "source": "https://images.unsplash.com/photo-1654043342878-7491a4c4d098",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/pages/contact.webp",
+    "source": "https://images.unsplash.com/photo-1758686254218-30e3abffba4e",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/pages/careers-nurse.webp",
+    "source": "https://images.unsplash.com/photo-1594824476967-48c8b964273f",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/pages/careers-team.webp",
+    "source": "https://images.unsplash.com/photo-1773227060313-7623fd5bfa64",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/blog/technology.webp",
+    "source": "https://images.unsplash.com/photo-1758612896994-3568501a9a6d",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/blog/medicare.webp",
+    "source": "https://images.unsplash.com/photo-1700832082152-0416a3ee5e60",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/blog/home-safety.webp",
+    "source": "https://images.unsplash.com/photo-1763631007426-5869ece08264",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/blog/mental-health.webp",
+    "source": "https://images.unsplash.com/photo-1758691031036-5b7b635e30b8",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/blog/nutrition.webp",
+    "source": "https://images.unsplash.com/photo-1758874959821-5484186a8d21",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/blog/physical-therapy.webp",
+    "source": "https://images.unsplash.com/photo-1723433892471-62f113c8c9a0",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/blog/diabetes.webp",
+    "source": "https://images.unsplash.com/photo-1758691462413-b07dee2933fe",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/blog/wound-care.webp",
+    "source": "https://images.unsplash.com/photo-1454875392665-2ac2c85e8d3e",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/blog/medication.webp",
+    "source": "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289",
+    "license": "Unsplash License (free for commercial use, no attribution required)"
+  },
+  {
+    "file": "public/images/awards/award-2006.jpg",
+    "source": "Metropolitan Home Health Care (HomeCare Elite certificate, from the previous emetrocare.com)",
+    "license": "Client-owned"
+  },
+  {
+    "file": "public/images/awards/award-2007.jpg",
+    "source": "Metropolitan Home Health Care (HomeCare Elite certificate, from the previous emetrocare.com)",
+    "license": "Client-owned"
+  },
+  {
+    "file": "public/images/awards/award-2008.jpg",
+    "source": "Metropolitan Home Health Care (HomeCare Elite certificate, from the previous emetrocare.com)",
+    "license": "Client-owned"
+  },
+  {
+    "file": "public/images/awards/award-2009.jpg",
+    "source": "Metropolitan Home Health Care (HomeCare Elite certificate, from the previous emetrocare.com)",
+    "license": "Client-owned"
+  },
+  {
+    "file": "public/images/awards/award-2019.jpg",
+    "source": "Metropolitan Home Health Care (HomeCare Elite certificate, from the previous emetrocare.com)",
+    "license": "Client-owned"
+  },
+  {
+    "file": "public/images/avatars/sarah-johnson.webp",
+    "source": "https://images.unsplash.com/photo-1758600436770-821223436cdc",
+    "license": "Unsplash License (free for commercial use, no attribution required). Model photo, not the person quoted."
+  },
+  {
+    "file": "public/images/avatars/michael-rodriguez.webp",
+    "source": "https://images.unsplash.com/photo-1642583758115-fa78e451c044",
+    "license": "Unsplash License (free for commercial use, no attribution required). Model photo, not the person quoted."
+  },
+  {
+    "file": "public/images/avatars/dorothy-chen.webp",
+    "source": "https://images.unsplash.com/photo-1778174903051-0b15d54bb451",
+    "license": "Unsplash License (free for commercial use, no attribution required). Model photo, not the person quoted."
+  },
+  {
+    "file": "public/images/avatars/robert-williams.webp",
+    "source": "https://images.unsplash.com/photo-1758612897972-dba54225048a",
+    "license": "Unsplash License (free for commercial use, no attribution required). Model photo, not the person quoted."
+  },
+  {
+    "file": "public/images/avatars/jennifer-martinez.webp",
+    "source": "https://images.unsplash.com/photo-1630939687530-241d630735df",
+    "license": "Unsplash License (free for commercial use, no attribution required). Model photo, not the person quoted."
+  },
+  {
+    "file": "public/images/insurers/medicare.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Medicare_logo.svg",
+    "license": "Trademark of the insurer, shown to identify accepted plans. Confirm use against each insurer's brand guidelines or provider agreement."
+  },
+  {
+    "file": "public/images/insurers/bcbs.svg",
+    "source": "https://en.wikipedia.org/wiki/File:Blue_Cross_Blue_Shield_Association_logo.svg",
+    "license": "Trademark of the insurer, shown to identify accepted plans. Confirm use against each insurer's brand guidelines or provider agreement."
+  },
+  {
+    "file": "public/images/insurers/aetna.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Aetna_logo.svg",
+    "license": "Trademark of the insurer, shown to identify accepted plans. Confirm use against each insurer's brand guidelines or provider agreement."
+  },
+  {
+    "file": "public/images/insurers/uhc.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:UnitedHealthcare_(logo).svg",
+    "license": "Trademark of the insurer, shown to identify accepted plans. Confirm use against each insurer's brand guidelines or provider agreement."
+  },
+  {
+    "file": "public/images/insurers/cigna.svg",
+    "source": "https://en.wikipedia.org/wiki/File:Cigna_logo.svg",
+    "license": "Trademark of the insurer, shown to identify accepted plans. Confirm use against each insurer's brand guidelines or provider agreement."
+  }
+]

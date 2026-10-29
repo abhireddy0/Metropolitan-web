@@ -1,0 +1,32 @@
+[
+  {
+    "quote": "Metropolitan Home Health Care provided exceptional skilled nursing care for my mother. The nurses were professional, compassionate, and truly cared about her wellbeing. We couldn't have asked for better service.",
+    "name": "Sarah Johnson",
+    "role": "Family Caregiver",
+    "location": "Chicago, IL"
+  },
+  {
+    "quote": "The physical therapy team helped my father regain his mobility after surgery. Their expertise and dedication made all the difference in his recovery. Highly recommend their services.",
+    "name": "Michael Rodriguez",
+    "role": "Son of Patient",
+    "location": "Wheeling, IL"
+  },
+  {
+    "quote": "As a senior living independently, having Metropolitan's home health aide has been a blessing. They help me maintain my dignity while ensuring I'm safe and well-cared for at home.",
+    "name": "Dorothy Chen",
+    "role": "Patient",
+    "location": "Lake County, IL"
+  },
+  {
+    "quote": "The palliative care team provided comfort and support during my wife's illness. Their compassionate approach and medical expertise gave our family peace of mind during a difficult time.",
+    "name": "Robert Williams",
+    "role": "Spouse of Patient",
+    "location": "DuPage County, IL"
+  },
+  {
+    "quote": "Metropolitan's infusion therapy services allowed me to receive treatment at home instead of frequent hospital visits. The nurses were skilled, and the convenience was invaluable during my recovery.",
+    "name": "Jennifer Martinez",
+    "role": "Patient",
+    "location": "Cook County, IL"
+  }
+]
