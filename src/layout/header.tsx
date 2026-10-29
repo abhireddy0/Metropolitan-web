@@ -20,7 +20,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { hero, nav, services, servicesIntro, site, tel } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-const linkStyle = "bg-transparent px-3 text-[0.975rem] font-medium text-foreground hover:bg-accent hover:text-leaf aria-[current=page]:bg-accent aria-[current=page]:text-leaf";
+const linkStyle = "bg-transparent px-3 text-base font-medium text-foreground hover:bg-accent hover:text-leaf aria-[current=page]:bg-accent aria-[current=page]:text-leaf";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -49,7 +49,7 @@ export function SiteHeader() {
                 <div className="grid w-[640px] grid-cols-2 gap-x-6 gap-y-1 p-5">
                   <p className="col-span-2 mb-2 px-2.5 text-xs font-semibold tracking-[0.08em] text-muted-foreground uppercase">{servicesIntro.eyebrow}</p>
                   {services.map((s) => (
-                    <NavigationMenuLink key={s.slug} render={<Link href={`/services/${s.slug}`} />} aria-current={isCurrent(`/services/${s.slug}`) ? "page" : undefined} className="flex flex-row items-center gap-3 px-2.5 py-2 text-[0.95rem] hover:bg-accent hover:text-leaf">
+                    <NavigationMenuLink key={s.slug} render={<Link href={`/services/${s.slug}`} />} aria-current={isCurrent(`/services/${s.slug}`) ? "page" : undefined} className="flex flex-row items-center gap-3 px-2.5 py-2 text-small hover:bg-accent hover:text-leaf">
                       <ServiceIcon slug={s.slug} className="size-9 rounded-lg [&_svg]:size-5" />
                       {s.name}
                     </NavigationMenuLink>

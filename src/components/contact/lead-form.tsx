@@ -122,7 +122,7 @@ export function LeadForm({ kind = "request", preset, title, intro, className }: 
 
   return (
     <form noValidate onSubmit={onSubmit} data-form={kind} className={cn("rounded-2xl border bg-card p-6 shadow-[0_1px_2px_rgb(29_42_34/0.06)] sm:p-10", className)}>
-      {title && <h2 className="mb-1.5 text-[clamp(1.5rem,1.3rem+0.8vw,1.9rem)]">{title}</h2>}
+      {title && <h2 className="mb-1.5 text-h3">{title}</h2>}
       {intro && <p className="text-muted-foreground">{intro}</p>}
       <div className={cn("grid gap-x-4 gap-y-5 sm:grid-cols-2", (title || intro) && "mt-6")}>
         {fields.map((f) => {
@@ -139,7 +139,7 @@ export function LeadForm({ kind = "request", preset, title, intro, className }: 
           };
           return (
             <div key={f.name} className={cn(f.full && "sm:col-span-2")}>
-              <label htmlFor={id} className="mb-1.5 block text-[0.9375rem] font-semibold">{f.label}</label>
+              <label htmlFor={id} className="mb-1.5 block text-small font-semibold">{f.label}</label>
               {f.type === "textarea" ? (
                 <textarea {...common} rows={4} placeholder={f.placeholder} className={cn(control, "min-h-30 resize-y")} />
               ) : f.type === "select" ? (
@@ -156,7 +156,7 @@ export function LeadForm({ kind = "request", preset, title, intro, className }: 
         })}
 
         <div className="sm:col-span-2">
-          <label className="flex items-start gap-2.5 text-[0.9375rem] text-ink-2">
+          <label className="flex items-start gap-2.5 text-small text-ink-2">
             <input
               type="checkbox"
               name="consent"

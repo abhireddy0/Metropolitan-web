@@ -1,6 +1,6 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "cn"
+import { cn } from "@/lib/utils"
 
 // Filled buttons draw their edge with a 2.5px ring plus inner highlights instead of a border; hover dims the fill.
 const filled =
@@ -21,7 +21,7 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-12 px-6 text-base",
-        sm: "h-10 px-4 text-[0.9375rem]",
+        sm: "h-10 px-4 text-small",
         lg: "h-13 px-7 text-base",
         icon: "size-11",
         "icon-sm": "size-9 [&_svg:not([class*='size-'])]:size-5",

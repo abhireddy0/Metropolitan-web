@@ -48,9 +48,9 @@ export function ValuePanels({ items }: { items: Pair[] }) {
               {/* Closed strips on desktop: number and title running upward. */}
               <span aria-hidden={open} className={cn("hidden items-center gap-3 whitespace-nowrap [writing-mode:vertical-rl] rotate-180", !open && "lg:flex")}>
                 <span className="text-sm font-semibold tracking-[0.1em] text-leaf tabular-nums">{num(i)}</span>
-                <span className="text-[1.15rem] font-semibold tracking-[-0.01em]">{title}</span>
+                <span className="text-lg font-semibold tracking-[-0.01em]">{title}</span>
               </span>
-              <h3 className={cn("flex-1 text-[1.25rem] leading-tight font-semibold tracking-[-0.02em] lg:sr-only", open && "text-white")}>{title}</h3>
+              <h3 className={cn("flex-1 text-title leading-tight font-semibold tracking-[-0.02em] lg:sr-only", open && "text-white")}>{title}</h3>
             </button>
 
             {/* Open panel content. On desktop it fades in once the panel has widened. */}
@@ -64,8 +64,8 @@ export function ValuePanels({ items }: { items: Pair[] }) {
               <div className="min-h-0 overflow-hidden lg:max-w-[560px] lg:overflow-visible">
                 <div className="px-6 pb-7 lg:p-0">
                   <span className="mb-3 hidden text-sm font-semibold tracking-[0.1em] text-white/80 tabular-nums lg:block">{num(i)}</span>
-                  <p aria-hidden className="mb-4 hidden text-[2rem] leading-tight font-semibold tracking-[-0.025em] text-white lg:block">{title}</p>
-                  <p className="text-[1.02rem] leading-relaxed text-white/90">{body}</p>
+                  <p aria-hidden className="mb-4 hidden text-h3 leading-tight font-semibold tracking-[-0.025em] text-white lg:block">{title}</p>
+                  <p className="text-base leading-relaxed text-white/90">{body}</p>
                 </div>
               </div>
             </div>

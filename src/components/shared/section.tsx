@@ -40,7 +40,7 @@ export function SectionHeader({ eyebrow, title, sub, id, className, children }: 
     <div className={cn("mb-10 flex flex-col items-center gap-6 text-center md:mb-14", className)}>
       <div className="grid max-w-2xl justify-items-center gap-3">
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-        <h2 id={id} className="text-[clamp(1.85rem,1.4rem+1.8vw,2.6rem)] leading-[1.15]">{title}</h2>
+        <h2 id={id} className="text-h2 leading-[1.15]">{title}</h2>
         {sub && <p className="text-lg text-ink-2">{sub}</p>}
       </div>
       {children}

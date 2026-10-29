@@ -103,8 +103,8 @@ export function HeroCarousel({ slides, className }: { slides: HeroSlide[]; class
               )}
             />
             <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-forest-dark/90 via-forest-dark/45 to-transparent px-6 pt-20 pr-32 pb-6 text-white sm:px-7 sm:pr-56 sm:pb-7">
-              <strong className="block text-[1.05rem] leading-snug font-semibold">{s.title}</strong>
-              <span className="text-sm text-white/80">{s.text}</span>
+              <strong className="block text-lg leading-snug font-semibold">{s.title}</strong>
+              <span className="text-small text-white/85">{s.text}</span>
             </figcaption>
           </figure>
         ))}

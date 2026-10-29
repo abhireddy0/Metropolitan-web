@@ -53,7 +53,7 @@ export default function CareersPage() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {careers.benefits.items.map(([title, body]) => (
             <div key={title} className="border-t-[1.5px] border-leaf pt-5">
-              <h3 className="mb-2 font-display text-[1.4rem] font-medium">{title}</h3>
+              <h3 className="mb-2 font-display text-title font-medium">{title}</h3>
               <p className="text-ink-2">{body}</p>
             </div>
           ))}

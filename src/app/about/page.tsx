@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { CertificateIcon } from "@phosphor-icons/react/ssr";
-import { CtaBand, FaqSection, h2Class, PageHero, Stats, TextLink } from "@/components/shared/blocks";
+import { CoverageMap, CtaBand, FaqSection, MissionPanel, PageHero, Stats, TextLink, h2Class } from "@/components/shared/blocks";
 import { JsonLd } from "@/components/shared/json-ld";
 import { Media } from "@/components/shared/media";
 import { Eyebrow, Section } from "@/components/shared/section";
 import { buttonVariants } from "@/components/ui/button";
-import { about, faqs, mission, serviceAreas, site, stats, tel } from "@/lib/content";
+import { about, faqs, serviceAreas, site, stats, tel } from "@/lib/content";
 import { crumbsLd, faqLd, pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
@@ -41,16 +41,15 @@ export default function AboutPage() {
       />
 
       <Section tone="white" aria-labelledby="mission-title">
-        <div className="grid gap-8 lg:grid-cols-[5fr_7fr] lg:gap-20">
-          <h2 id="mission-title" className={h2Class}>{mission.title}</h2>
-          <div>
-            <p className="font-display text-[clamp(1.25rem,1.05rem+0.8vw,1.65rem)] leading-[1.5]">{mission.text}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
+        <MissionPanel
+          id="mission-title"
+          actions={
+            <>
               <Link href="/services" className={buttonVariants({ variant: "green" })}>Explore Our Services</Link>
               <Link href="/contact" className={buttonVariants({ variant: "outline" })}>Contact Us Today</Link>
-            </div>
-          </div>
-        </div>
+            </>
+          }
+        />
       </Section>
 
       <Section aria-labelledby="values-title">
@@ -58,7 +57,7 @@ export default function AboutPage() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {about.values.map(([title, body]) => (
             <div key={title} className="border-t-[1.5px] border-leaf pt-5">
-              <h3 className="mb-2 font-display text-[1.4rem] font-medium">{title}</h3>
+              <h3 className="mb-2 font-display text-title font-medium">{title}</h3>
               <p className="text-ink-2">{body}</p>
             </div>
           ))}
@@ -93,19 +92,18 @@ export default function AboutPage() {
       </Section>
 
       <Section tone="sage" aria-labelledby="areas-title">
-        <div className="grid items-center gap-8 lg:grid-cols-[5fr_7fr] lg:gap-20">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <Eyebrow className="mb-4">{serviceAreas.sub}</Eyebrow>
-            <h2 id="areas-title" className={h2Class}>{serviceAreas.title}</h2>
-          </div>
-          <div>
+            <h2 id="areas-title" className={cn(h2Class, "mb-5")}>{serviceAreas.title}</h2>
             <p className="mb-5 text-lg text-ink-2">{serviceAreas.text}</p>
             <div className="mb-6 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-2xl border bg-card px-6 py-4">
               <span><strong className="block">{serviceAreas.touchTitle}</strong><span className="text-sm text-muted-foreground">{serviceAreas.touchText}</span></span>
               <a href={tel(site.phone)} className="font-semibold text-leaf hover:underline">{site.phoneDashed}</a>
             </div>
-            <TextLink href="/service-areas">{serviceAreas.mapTitle}</TextLink>
+            <TextLink href="/service-areas">View all counties we serve</TextLink>
           </div>
+          <CoverageMap className="aspect-4/3 lg:aspect-auto lg:h-full lg:min-h-[440px]" />
         </div>
       </Section>
       <CtaBand />

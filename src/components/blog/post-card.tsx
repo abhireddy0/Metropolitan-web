@@ -27,9 +27,9 @@ export function BlogCard({ post }: { post: Post }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group flex flex-col">
       <PostCover post={post} className="mb-4 aspect-16/10 rounded-lg" />
-      <p className="mb-2 text-[0.825rem] font-semibold tracking-[0.06em] text-leaf uppercase">{post.category}</p>
-      <h3 className="mb-2 font-display text-[1.35rem] leading-tight font-medium group-hover:text-leaf">{post.title}</h3>
-      <p className="text-[0.975rem] text-muted-foreground">{post.summary}</p>
+      <p className="mb-2 text-sm font-semibold tracking-[0.06em] text-leaf uppercase">{post.category}</p>
+      <h3 className="mb-2 font-display text-title leading-tight font-medium group-hover:text-leaf">{post.title}</h3>
+      <p className="text-base text-muted-foreground">{post.summary}</p>
     </Link>
   );
 }
@@ -40,7 +40,7 @@ export function FeaturedPost({ post }: { post: Post }) {
       <PostCover post={post} eager sizes="(max-width: 1024px) 100vw, 640px" className="aspect-16/10 rounded-2xl" />
       <div>
         <p className="eyebrow mb-4">{post.category}</p>
-        <h2 className="mb-4 text-[clamp(1.75rem,1.4rem+1.4vw,2.4rem)] leading-[1.15] group-hover:text-leaf">{post.title}</h2>
+        <h2 className="mb-4 text-h2 leading-[1.15] group-hover:text-leaf">{post.title}</h2>
         <p className="mb-5 text-lg text-ink-2">{post.summary}</p>
         <span className="inline-flex items-center gap-1.5 font-semibold text-leaf">
           Read article <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />

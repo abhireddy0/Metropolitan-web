@@ -46,6 +46,23 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.6);
+
+  /* Type scale: every heading and text size on the site comes from here. */
+  --text-display: clamp(2.5rem, 1.8rem + 2.8vw, 3.75rem);
+  --text-display--line-height: 1.06;
+  --text-display--letter-spacing: -0.035em;
+  --text-stat: clamp(2.5rem, 2rem + 1.8vw, 3.25rem);
+  --text-stat--line-height: 1;
+  --text-h2: clamp(1.875rem, 1.5rem + 1.4vw, 2.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h3: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);
+  --text-h3--line-height: 1.25;
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.3;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.55;
 }
 
 :root {
@@ -119,7 +136,7 @@
 
 /* Small pill label above headings. */
 @utility eyebrow {
-  @apply inline-flex h-fit w-fit items-center self-start rounded-full border border-line-strong bg-card px-3.5 py-1 text-[0.875rem] font-medium text-foreground;
+  @apply inline-flex h-fit w-fit items-center self-start rounded-full border border-line-strong bg-card px-3.5 py-1 text-sm font-medium text-foreground;
 }
 
 /* Scroll entrance, toggled by src/layout/reveal.tsx: rise, fade and un-blur. All three run the same length so one transitionend means done. */
@@ -151,7 +168,7 @@
   .prose-article {
     @apply max-w-[720px] text-lg leading-[1.75] text-foreground;
     & h2 {
-      @apply mt-12 mb-3 font-display text-[1.75rem] leading-tight font-semibold tracking-[-0.02em];
+      @apply mt-12 mb-3 font-display text-h3 leading-tight font-semibold tracking-[-0.02em];
     }
     & h3 {
       @apply mt-8 mb-2 text-lg font-semibold;

@@ -36,7 +36,7 @@ const link = "text-ink-2 transition-colors hover:text-leaf";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t bg-card text-[0.95rem]">
+    <footer className="border-t bg-card text-small">
       <Container className="pt-12 md:pt-16">
         <div className="grid gap-10 pb-12 sm:grid-cols-2 md:pb-14 lg:grid-cols-[1.25fr_1.6fr_1fr_1fr]">
           <div className="sm:col-span-2 lg:col-span-1">

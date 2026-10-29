@@ -87,7 +87,7 @@ export default function InsurancePage() {
                     <div key={p.name} className="flex flex-col rounded-2xl border bg-card p-6">
                       <div className="mb-2 flex items-start justify-between gap-3">
                         <h3 className="text-xl font-semibold">{p.name}</h3>
-                        {p.accepting && <span className="rounded-full bg-sage px-2.5 py-1 text-[0.8rem] font-semibold whitespace-nowrap text-forest">Accepting</span>}
+                        {p.accepting && <span className="rounded-full bg-sage px-2.5 py-1 text-sm font-semibold whitespace-nowrap text-forest">Accepting</span>}
                       </div>
                       <p className="mb-4 text-ink-2">{p.description}</p>
                       <p className="mt-auto border-t pt-3 text-sm"><span className="text-muted-foreground">Coverage: </span><span className="font-semibold">{p.coverage}</span></p>

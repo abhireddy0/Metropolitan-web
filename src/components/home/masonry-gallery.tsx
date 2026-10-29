@@ -56,7 +56,7 @@ export function MasonryGallery({ items }: { items: GalleryItem[] }) {
                 className="size-full object-cover transition-transform duration-900 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-[1.06]"
               />
               <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-forest-dark/80 via-forest-dark/30 to-transparent px-5 pt-14 pb-4 text-white transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] [@media(hover:hover)]:translate-y-2 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:translate-y-0 [@media(hover:hover)]:group-focus-visible:opacity-100">
-                <span className="block text-[1.02rem] leading-snug font-semibold">{item.caption}</span>
+                <span className="block text-base leading-snug font-semibold">{item.caption}</span>
               </span>
             </button>
           </li>

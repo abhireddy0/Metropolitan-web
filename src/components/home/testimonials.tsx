@@ -73,7 +73,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
       <Container className="py-16 md:py-28">
         <div className="mx-auto mb-10 grid max-w-2xl justify-items-center gap-4 text-center md:mb-14">
           <Eyebrow>{stories.eyebrow}</Eyebrow>
-          <h2 id="stories-title" className="text-[clamp(1.85rem,1.4rem+1.8vw,2.6rem)] leading-[1.15]">{stories.title}</h2>
+          <h2 id="stories-title" className="text-h2 leading-[1.15]">{stories.title}</h2>
           <p className="text-lg text-ink-2">{stories.sub}</p>
         </div>
 
@@ -111,15 +111,15 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
                     <figcaption className="flex items-center gap-4 md:w-[30%] md:flex-col md:justify-center md:text-center">
                       <img src={avatar(t.name)} alt="" aria-hidden width={120} height={120} decoding="async" draggable={false} className="size-14 shrink-0 rounded-full bg-sage object-cover ring-4 ring-sage-2/60 md:mb-2 md:size-30" />
                       <span>
-                        <strong className="block text-[1.05rem] font-semibold">{t.name}</strong>
+                        <strong className="block text-lg font-semibold">{t.name}</strong>
                         <span className="block text-sm text-muted-foreground">{t.role}</span>
                         <span className="block text-sm text-muted-foreground">{t.location}</span>
                       </span>
                     </figcaption>
                     <blockquote className="mt-6 border-t border-foreground/15 pt-6 md:mt-0 md:w-[70%] md:border-t-0 md:border-l md:pt-0 md:pl-15">
                       <QuotesIcon weight="fill" className="mb-5 size-8 text-sage-2" />
-                      <p className="mb-4 text-[1.05rem] leading-relaxed font-semibold md:text-[1.25rem] md:leading-[1.875rem]">{title}</p>
-                      {body && <p className="text-[0.95rem] leading-relaxed text-ink-2 md:text-base">{body}</p>}
+                      <p className="mb-4 text-lg leading-relaxed font-semibold md:text-title md:leading-[1.875rem]">{title}</p>
+                      {body && <p className="text-small leading-relaxed text-ink-2 md:text-base">{body}</p>}
                     </blockquote>
                   </figure>
                 );

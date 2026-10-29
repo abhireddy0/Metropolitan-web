@@ -27,7 +27,7 @@ export default function ServicesPage() {
         <ServiceGrid list={services} />
         <div className="mt-14 flex flex-wrap items-center justify-between gap-6 rounded-2xl border bg-sage p-8 md:p-10">
           <div className="max-w-2xl">
-            <h2 className="mb-2 text-[1.75rem]">{hero.personalized.title}</h2>
+            <h2 className="mb-2 text-h3">{hero.personalized.title}</h2>
             <p className="text-lg text-ink-2">{hero.personalized.text}</p>
           </div>
           <Link href="/contact" className={buttonVariants({ variant: "green" })}>{hero.personalized.cta}</Link>

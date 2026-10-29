@@ -11,6 +11,7 @@ import {
   LockKeyIcon,
   MapPinIcon,
   PhoneIcon,
+  QuotesIcon,
   ShieldCheckIcon,
   UsersThreeIcon,
 } from "@phosphor-icons/react/ssr";
@@ -22,14 +23,14 @@ import { ServiceIcon } from "@/components/shared/service-icon";
 import { Container, Eyebrow } from "@/components/shared/section";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { buttonVariants } from "@/components/ui/button";
-import { closingCta, compliance, contactBlock, faqIntro, site, tel, type County, type Faq, type Pair, type Service } from "@/lib/content";
+import { closingCta, compliance, contactBlock, faqIntro, mission, site, tel, type County, type Faq, type Pair, type Service } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-export const h2Class = "text-[clamp(1.85rem,1.4rem+1.8vw,2.6rem)] leading-[1.15]";
+export const h2Class = "text-h2 leading-[1.15]";
 
 export function Breadcrumbs({ items }: { items: [name: string, path: string][] }) {
   return (
-    <nav aria-label="Breadcrumb" className="mb-6 text-[0.9rem] text-muted-foreground">
+    <nav aria-label="Breadcrumb" className="mb-6 text-small text-muted-foreground">
       <ol className="flex flex-wrap gap-1.5">
         {items.map(([name, path], i) => (
           <li key={path} className="flex items-center gap-1.5">
@@ -50,7 +51,7 @@ export function Badges({ items, className }: { items: string[]; className?: stri
   return (
     <ul className={cn("flex flex-wrap gap-2", className)}>
       {items.map((b) => (
-        <li key={b} className="inline-flex items-center gap-1.5 rounded-full border border-sage-2 bg-sage px-3 py-1 text-[0.85rem] font-semibold text-forest">
+        <li key={b} className="inline-flex items-center gap-1.5 rounded-full border border-sage-2 bg-sage px-3 py-1 text-sm font-semibold text-forest">
           <CheckCircleIcon weight="fill" className="size-4" /> {b}
         </li>
       ))}
@@ -81,8 +82,8 @@ export function PageHero({ crumbs, eyebrow, badges, title, lead, actions, aside,
             {badges && <Badges items={badges} className="mb-5" />}
             {eyebrow && <Eyebrow className="mb-4">{eyebrow}</Eyebrow>}
             {icon && <div className="mb-5">{icon}</div>}
-            <h1 className="max-w-[820px] text-[clamp(2.35rem,1.6rem+3vw,3.6rem)] leading-[1.1]">{title}</h1>
-            {lead && <div className="mt-5 max-w-[680px] text-[clamp(1.1rem,1rem+0.4vw,1.25rem)] leading-relaxed text-ink-2">{lead}</div>}
+            <h1 className="max-w-[820px] text-display leading-[1.1]">{title}</h1>
+            {lead && <div className="mt-5 max-w-[680px] text-lead leading-relaxed text-ink-2">{lead}</div>}
             {actions && <div className="mt-7 flex flex-wrap gap-3">{actions}</div>}
           </div>
           {aside}
@@ -113,7 +114,7 @@ export function ServiceCard({ service, slide = false, sizes = "(max-width: 640px
       </div>
       <div className="flex flex-1 flex-col p-6 pt-9">
         <h3 className="mb-1.5 text-xl font-semibold">{slide ? service.heroTitle : service.name}</h3>
-        <p className="mb-5 text-[0.975rem] text-muted-foreground">{slide ? service.heroSub : service.card}</p>
+        <p className="mb-5 text-base text-muted-foreground">{slide ? service.heroSub : service.card}</p>
         <span className="mt-auto inline-flex items-center gap-1.5 font-semibold text-leaf">
           Learn More <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
         </span>
@@ -139,7 +140,7 @@ export function ItemGrid({ items }: { items: string[] }) {
       {items.map((t) => (
         <li key={t} className="flex items-center gap-4 rounded-2xl border bg-card p-5 transition-colors hover:border-sage-2 hover:bg-[#fdfcf9]">
           <ItemIcon title={t} />
-          <span className="text-[1.05rem] leading-snug font-semibold">{t}</span>
+          <span className="text-lg leading-snug font-semibold">{t}</span>
         </li>
       ))}
     </ul>
@@ -152,7 +153,7 @@ export function Faq({ items }: { items: Faq[] }) {
     <Accordion className="gap-4">
       {items.map(({ q, a }) => (
         <AccordionItem key={q} value={q} className="rounded-xl border border-transparent bg-sand transition-colors not-last:border-b-0 has-aria-expanded:border-line-strong/60">
-          <AccordionTrigger className="items-center gap-5 px-5 py-5 text-[1.05rem] font-semibold hover:no-underline md:px-6 **:data-[slot=accordion-trigger-icon]:hidden">
+          <AccordionTrigger className="items-center gap-5 px-5 py-5 text-lg font-semibold hover:no-underline md:px-6 **:data-[slot=accordion-trigger-icon]:hidden">
             {q}
             <span aria-hidden className="ml-auto grid size-9 shrink-0 place-items-center rounded-lg bg-[color-mix(in_oklab,var(--cta)_14%,var(--card))] text-cta transition-colors group-aria-expanded/accordion-trigger:bg-cta group-aria-expanded/accordion-trigger:text-white">
               <ArrowDownIcon weight="bold" className="size-4 group-aria-expanded/accordion-trigger:hidden" />
@@ -213,7 +214,7 @@ export function Stats({ items, pairs = false }: { items: Pair[]; pairs?: boolean
     <div className={cn("grid grid-cols-2 gap-y-8", !pairs && (items.length === 3 ? "sm:grid-cols-3" : "lg:grid-cols-4"))}>
       {items.map(([value, label], i) => (
         <div key={label} className={cn("border-line-strong px-4 sm:px-7", i % 2 === 0 ? "pl-0 sm:pl-0" : "border-l", i === 2 && !pairs && "sm:border-l sm:pl-7")}>
-          <strong className="mb-2.5 block font-display text-[clamp(2.4rem,1.8rem+2vw,3.4rem)] leading-none font-semibold tracking-[-0.03em] text-forest">{value}</strong>
+          <strong className="mb-2.5 block font-display text-stat leading-none font-semibold tracking-[-0.03em] text-forest">{value}</strong>
           <span className="block max-w-[220px] text-ink-2">{label}</span>
         </div>
       ))}
@@ -227,7 +228,7 @@ export function ComplianceStrip() {
   return (
     <section aria-label={compliance.title} className="border-y bg-card py-7">
       <Container className="grid gap-6 sm:grid-cols-2 lg:grid-cols-[auto_repeat(4,1fr)] lg:items-center">
-        <p className="text-[0.8125rem] font-semibold tracking-[0.08em] text-muted-foreground uppercase sm:col-span-2 lg:col-span-1 lg:border-r lg:pr-6">{compliance.title}</p>
+        <p className="text-sm font-semibold tracking-[0.08em] text-muted-foreground uppercase sm:col-span-2 lg:col-span-1 lg:border-r lg:pr-6">{compliance.title}</p>
         {compliance.items.map((title, i) => {
           const Glyph = complianceIcons[i];
           return (
@@ -298,7 +299,7 @@ export function ContactCards() {
       </div>
       <div className="mt-4 rounded-2xl border bg-card p-5">
         <h3 className="mb-1 flex items-center gap-2 font-semibold"><UsersThreeIcon weight="duotone" className="size-5 text-leaf" /> {contactBlock.coverageTitle}</h3>
-        <p className="mb-3 text-[0.95rem] text-ink-2">{contactBlock.coverage}</p>
+        <p className="mb-3 text-small text-ink-2">{contactBlock.coverage}</p>
         <TextLink href="/service-areas">View Service Areas</TextLink>
       </div>
     </div>
@@ -331,10 +332,78 @@ export function CountyCard({ county }: { county: County }) {
         <h3 className="text-lg font-semibold">{county.name}</h3>
         <span className="text-sm text-muted-foreground">Pop. {county.population}</span>
       </div>
-      <p className="mb-4 text-[0.95rem] text-muted-foreground"><span className="font-semibold text-ink-2">Major Cities:</span> {county.cities.join(", ")}</p>
-      <span className={cn("inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.8rem] font-semibold", fast ? "bg-sage text-forest" : "bg-sand text-ink-2")}>
+      <p className="mb-4 text-small text-muted-foreground"><span className="font-semibold text-ink-2">Major Cities:</span> {county.cities.join(", ")}</p>
+      <span className={cn("inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-semibold", fast ? "bg-sage text-forest" : "bg-sand text-ink-2")}>
         <ClockIcon weight="duotone" className="size-3.5" /> Response Time: {county.response}
       </span>
+    </div>
+  );
+}
+
+// Mission: the first sentence is the statement, the rest supports it.
+const missionLead = mission.text.slice(0, mission.text.indexOf(". ") + 1);
+const missionRest = mission.text.slice(mission.text.indexOf(". ") + 2);
+
+/** Green mission panel: the first sentence as a bold statement, the rest beside it. Pass `id` when it heads its own section. */
+export function MissionPanel({ id, actions, className }: { id?: string; actions?: React.ReactNode; className?: string }) {
+  return (
+    <div className={cn("relative overflow-hidden rounded-3xl border border-sage-2 bg-sage px-7 py-10 md:px-14 md:py-16", className)}>
+      <QuotesIcon aria-hidden weight="fill" className="absolute -top-6 -left-3 size-32 text-sage-2/80 md:size-44" />
+      <div className="relative grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16">
+        <div>
+          {id ? <h2 id={id} className="eyebrow mb-6 font-sans tracking-normal">{mission.title}</h2> : <Eyebrow className="mb-6">{mission.title}</Eyebrow>}
+          <p className="text-h2 leading-[1.2] font-semibold tracking-[-0.025em] text-forest-dark">{missionLead}</p>
+        </div>
+        <div className="border-forest/15 lg:border-l lg:pl-12">
+          <p className="text-lg leading-relaxed text-ink-2">{missionRest}</p>
+          <p className="mt-6 flex items-center gap-3 text-sm font-semibold text-forest">
+            <span aria-hidden className="h-px w-8 bg-leaf" /> {site.name}
+          </p>
+          {actions && <div className="mt-8 flex flex-wrap gap-3">{actions}</div>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Google map of the Chicago metro around the Wheeling office; loads only when scrolled near. */
+// Office location (340 E Dundee Rd, Wheeling). Centring on it with ll= instead of q= avoids Google's place card,
+// so our own pin and card can sit on top. Google's attribution and controls stay visible.
+const office = { lat: 42.13935, lng: -87.92528 };
+
+export function CoverageMap({ className, zoom = 9 }: { className?: string; zoom?: number }) {
+  return (
+    <div className={cn("relative isolate min-h-[340px] overflow-hidden rounded-3xl border border-sage-2 bg-sage shadow-[0_24px_48px_-32px_rgb(18_48_29/0.45)]", className)}>
+      <iframe
+        title="Map of the Chicago metropolitan area served by Metropolitan Home Health Care, office in Wheeling, IL"
+        src={`https://maps.google.com/maps?ll=${office.lat},${office.lng}&z=${zoom}&t=m&output=embed`}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        className="absolute inset-x-0 -top-14 -z-10 h-[calc(100%+3.5rem)] w-full border-0 [filter:saturate(0.7)_contrast(1.02)]"
+      />
+      {/* Brand tint so the map sits in the green and beige palette. */}
+      <span aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-sage/20 mix-blend-multiply" />
+
+      {/* Office pin on the map centre (the iframe starts 3.5rem above the box, so its centre sits 1.75rem above ours). */}
+      <span aria-hidden className="pointer-events-none absolute top-[calc(50%-1.75rem)] left-1/2 -translate-x-1/2 -translate-y-full">
+        <span className="absolute top-full left-1/2 size-14 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-cta/25 motion-reduce:hidden" />
+        <span className="relative grid size-12 place-items-center rounded-full rounded-br-none bg-cta text-white shadow-[0_10px_24px_-8px_rgb(18_48_29/0.6)] ring-4 ring-white [transform:rotate(45deg)]">
+          <MapPinIcon weight="fill" className="size-6 [transform:rotate(-45deg)]" />
+        </span>
+      </span>
+
+      <div className="pointer-events-none absolute inset-x-3 top-3 flex flex-wrap items-start justify-between gap-3 sm:inset-x-5 sm:top-5">
+        <div className="pointer-events-auto max-w-[300px] rounded-2xl bg-card/95 p-4 shadow-[0_14px_30px_-16px_rgb(18_48_29/0.45)] backdrop-blur sm:p-5">
+          <p className="mb-0.5 text-small font-semibold text-forest-dark">{site.name}</p>
+          <p className="mb-3 text-sm text-muted-foreground">{site.address.street}, {site.address.locality}, {site.address.region}</p>
+          <a href={site.mapsUrl} target="_blank" rel="noopener" className={buttonVariants({ size: "sm" })}>
+            Get directions <ArrowRightIcon />
+          </a>
+        </div>
+        <span className="pointer-events-auto hidden items-center gap-2 rounded-full bg-forest-dark/90 px-4 py-2 text-sm font-semibold text-white shadow-[0_10px_24px_-12px_rgb(0_0_0/0.5)] backdrop-blur sm:inline-flex">
+          <CheckCircleIcon weight="fill" className="size-4 text-sage-2" /> 10 Counties Served
+        </span>
+      </div>
     </div>
   );
 }
@@ -346,7 +415,7 @@ export function CtaBand({ title = closingCta.title, sub = closingCta.sub }: { ti
         <div className="grid items-center gap-8 rounded-2xl bg-forest-dark p-9 text-[#e9efe9] md:p-16 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <h2 className={cn(h2Class, "mb-2.5 text-white")}>{title}</h2>
-            <p className="text-[1.075rem] text-[#c9d6cc]">{sub}</p>
+            <p className="text-lg text-[#c9d6cc]">{sub}</p>
           </div>
           <div className="flex flex-wrap gap-3 lg:justify-end">
             <CallButton variant="light" />

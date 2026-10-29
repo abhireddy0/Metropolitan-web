@@ -74,7 +74,7 @@ export function ProcessStack({ items }: { items: Pair[] }) {
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>
-            <h3 className="mb-3 text-[1.6rem] leading-tight font-semibold tracking-[-0.02em]">{title}</h3>
+            <h3 className="mb-3 text-h3 leading-tight font-semibold tracking-[-0.02em]">{title}</h3>
             <p className="max-w-[460px] text-lg text-ink-2">{body}</p>
           </li>
         );

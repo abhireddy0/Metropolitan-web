@@ -1,4 +1,4 @@
-import { CallButton, CountyCard, CtaBand, FaqSection, h2Class, PageHero } from "@/components/shared/blocks";
+import { CallButton, CountyCard, CoverageMap, CtaBand, FaqSection, h2Class, PageHero } from "@/components/shared/blocks";
 import { JsonLd } from "@/components/shared/json-ld";
 import { Media } from "@/components/shared/media";
 import { Section } from "@/components/shared/section";
@@ -37,6 +37,7 @@ export default function ServiceAreasPage() {
             <a href={`tel:+1${site.phone.replace(/\D/g, "")}`} className="font-semibold text-leaf hover:underline">{site.phoneDashed}</a>
           </div>
         </div>
+        <CoverageMap zoom={8} className="mb-10 aspect-4/3 sm:aspect-16/9 lg:aspect-21/9 md:mb-14" />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {counties.map((c) => <CountyCard key={c.name} county={c} />)}
         </div>

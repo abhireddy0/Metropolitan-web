@@ -59,9 +59,9 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           <Container className="pt-8 md:pt-12">
             <Breadcrumbs items={crumbs} />
             <Eyebrow className="mb-4">{p.category}</Eyebrow>
-            <h1 className="max-w-[900px] text-[clamp(2.35rem,1.6rem+3vw,3.6rem)] leading-[1.1]">{p.title}</h1>
-            <p className="mt-5 max-w-[680px] text-[clamp(1.1rem,1rem+0.4vw,1.25rem)] text-ink-2">{p.summary}</p>
-            <ul className="mt-4 flex flex-wrap gap-2 text-[0.9rem] text-ink-2">
+            <h1 className="max-w-[900px] text-display leading-[1.1]">{p.title}</h1>
+            <p className="mt-5 max-w-[680px] text-lead text-ink-2">{p.summary}</p>
+            <ul className="mt-4 flex flex-wrap gap-2 text-small text-ink-2">
               <li className="rounded-full border bg-card px-3 py-1">By the {p.author}</li>
               <li className="rounded-full border bg-card px-3 py-1"><time dateTime={p.updated}>Updated {formatDate(p.updated)}</time></li>
               <li className="rounded-full border bg-card px-3 py-1">{p.readingTime} min read</li>
@@ -73,7 +73,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           <div className="grid gap-12 lg:grid-cols-[1fr_340px]">
             <div>
               <div className="prose-article" dangerouslySetInnerHTML={{ __html: p.body.html }} />
-              <p className="mt-12 max-w-[720px] rounded-lg bg-sand px-5 py-4 text-[0.95rem] text-ink-2">
+              <p className="mt-12 max-w-[720px] rounded-lg bg-sand px-5 py-4 text-small text-ink-2">
                 This article is general information, not medical advice. Talk with your physician about your situation. In an emergency, call 911.
               </p>
             </div>
