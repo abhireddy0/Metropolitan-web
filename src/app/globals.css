@@ -156,6 +156,27 @@
   transition-delay: var(--reveal-delay, 0ms);
 }
 
+/* Page-load entrance for hero content that the scroll reveal skips: rise 50px and fade in.
+   Stagger siblings with style={{ "--rise-delay": "120ms" }}. Reduced motion turns it off with the rule above. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+.animate-rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--rise-delay, 0ms) both;
+}
+
+/* Underline that grows in from the left on hover (footer links). */
+@utility link-animated {
+  background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat;
+  transition: background-size 0.3s ease, color 0.3s ease;
+  &:hover {
+    background-size: 100% 1px;
+  }
+}
+
 @utility scrollbar-none {
   scrollbar-width: none;
   &::-webkit-scrollbar {
