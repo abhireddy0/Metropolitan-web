@@ -17,7 +17,6 @@ export function GET() {
     ...services.map((s) => `- [${s.name}](${abs(`/services/${s.slug}`)}): ${s.card}`),
     "",
     "## Patients & families",
-    `- [Insurance & Medicare](${abs("/insurance")}): Medicare, Illinois Medicaid, BCBS, Aetna, UnitedHealthcare, Cigna.`,
     `- [Service areas](${abs("/service-areas")})`,
     `- [Request care](${abs("/contact")})`,
     "",

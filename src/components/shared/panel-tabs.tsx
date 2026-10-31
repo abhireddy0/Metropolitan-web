@@ -1,11 +1,10 @@
 "use client";
 
 import { Tabs } from "@base-ui/react/tabs";
-import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 // Panels are rendered on the server and kept mounted, so all tab content is in the static HTML.
-// Tabs are drawn as the site's buttons: the active one filled green, the rest the pale bordered style.
+// Tabs are drawn as pill chips, like the blog filters: the active one filled green.
 export function PanelTabs({ tabs, className }: { tabs: { value: string; label: string; panel: React.ReactNode }[]; className?: string }) {
   return (
     <Tabs.Root defaultValue={tabs[0].value} className={cn("flex flex-col gap-8", className)}>
@@ -14,7 +13,12 @@ export function PanelTabs({ tabs, className }: { tabs: { value: string; label: s
           <Tabs.Tab
             key={t.value}
             value={t.value}
-            className={(state) => cn(buttonVariants({ variant: state.active ? "default" : "outline", size: "sm" }), "shrink-0")}
+            className={(state) =>
+              cn(
+                "h-9 shrink-0 rounded-full border px-4 text-sm font-medium transition-colors",
+                state.active ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-foreground/75 hover:border-primary/40 hover:text-primary",
+              )
+            }
           >
             {t.label}
           </Tabs.Tab>

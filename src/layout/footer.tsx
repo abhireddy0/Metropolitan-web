@@ -1,26 +1,25 @@
 import Link from "next/link";
-import { ArrowRightIcon, EnvelopeSimpleIcon, MapPinIcon, PhoneIcon, PrinterIcon } from "@phosphor-icons/react/ssr";
+import { EnvelopeSimpleIcon, MapPinIcon, PhoneIcon, PrinterIcon } from "@phosphor-icons/react/ssr";
 import { Container } from "@/components/shared/section";
-import { Separator } from "@/components/ui/separator";
 import { services, site, tel } from "@/lib/content";
-import { cn } from "@/lib/utils";
 
-// Services get a wide two-column block next to the brand; the other pages are grouped by who they are for.
+// Tagline and phone on the left, four link columns on the right, then the copyright row,
+// then an oversized faded "METROPOLITAN" wordmark that sits on the bottom edge.
 const columns: [string, [string, string][]][] = [
+  ["Services", [...services.slice(0, 4).map((s): [string, string] => [`/services/${s.slug}`, s.name]), ["/services", "All services"]]],
   [
     "Company",
     [
       ["/about", "About Us"],
       ["/certificates", "Certificates"],
-      ["/careers", "Career Opportunities"],
+      ["/careers", "Careers"],
       ["/blog", "Blog"],
     ],
   ],
   [
-    "Patients & Families",
+    "Patients",
     [
       ["/service-areas", "Service Areas"],
-      ["/insurance", "Insurance Information"],
       ["/#faq", "FAQs"],
       ["/contact", "Contact Us"],
     ],
@@ -32,93 +31,77 @@ const legal: [string, string][] = [
   ["/hipaa-notice", "HIPAA Notice"],
 ];
 
-const contacts = [
-  { icon: PhoneIcon, href: tel(site.phone), body: site.phone, strong: true },
-  { icon: EnvelopeSimpleIcon, href: `mailto:${site.email}`, body: site.email },
-  {
-    icon: MapPinIcon,
-    href: site.mapsUrl,
-    external: true,
-    body: (
-      <>
-        {site.address.street}
-        <br />
-        {site.address.locality}, {site.address.region} {site.address.postalCode}
-      </>
-    ),
-  },
-  { icon: PrinterIcon, body: `Fax ${site.fax}` },
-];
-
-const heading = "text-base font-semibold text-foreground";
-const link = "link-animated transition-colors duration-300 hover:text-foreground";
+const link = "link-animated text-muted-foreground transition-colors duration-300 hover:text-foreground";
+const row = "flex items-start gap-2.5 transition-colors duration-300";
+const icon = "mt-0.5 size-[18px] shrink-0 text-primary";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t bg-card text-small">
-      <Container className="grid gap-10 py-12 sm:grid-cols-2 sm:py-16 md:py-20 lg:grid-cols-12 lg:gap-x-6">
-        <div className="flex flex-col items-start gap-5 sm:col-span-2 lg:col-span-4 lg:pr-10">
-          <Link href="/">
-            <img src="/images/logos/logo.png" width={456} height={154} alt={site.name} loading="lazy" className="h-14 w-auto" />
-          </Link>
-          <p className="max-w-[360px] text-muted-foreground">{site.tagline} {site.description}</p>
-          <address className="grid gap-3 text-muted-foreground not-italic">
-            {contacts.map(({ icon: Icon, href, external, body, strong }, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-sage text-leaf">
-                  <Icon weight="duotone" className="size-4" />
-                </span>
-                {href ? (
-                  <a href={href} {...(external ? { target: "_blank", rel: "noopener" } : {})} className={cn(link, "mt-1 break-all", strong && "font-semibold text-foreground")}>
-                    {body}
-                  </a>
-                ) : (
-                  <span className="mt-1">{body}</span>
-                )}
-              </div>
-            ))}
-          </address>
+    <footer className="relative overflow-hidden border-t bg-background">
+      <Container className="grid gap-12 pt-16 pb-10 lg:grid-cols-12 lg:pt-20">
+        <div className="space-y-5 lg:col-span-4">
+          <p className="text-2xl leading-snug font-bold">{site.tagline}</p>
+          <p className="max-w-[320px] text-[0.9375rem] text-muted-foreground">Compassionate, professional care in the comfort of home across the Chicago metro.</p>
+          <a href={tel(site.phone)} className="inline-flex items-center gap-2 text-lg font-semibold text-primary hover:underline">
+            <PhoneIcon weight="duotone" className="size-5" />
+            {site.phone}
+          </a>
         </div>
-
-        <nav aria-labelledby="footer-services" className="flex flex-col gap-5 sm:col-span-2 lg:col-span-4">
-          <h2 id="footer-services" className={heading}>Our Services</h2>
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-3 text-muted-foreground">
-            {services.map((s) => (
-              <li key={s.slug}>
-                <Link href={`/services/${s.slug}`} className={link}>{s.name}</Link>
-              </li>
-            ))}
-            <li>
-              <Link href="/services" className="link-animated inline-flex items-center gap-1 font-semibold text-leaf">
-                All services <ArrowRightIcon className="size-4" />
-              </Link>
-            </li>
-          </ul>
-        </nav>
-
-        {columns.map(([title, links]) => (
-          <nav key={title} aria-label={title} className="flex flex-col gap-5 lg:col-span-2">
-            <h2 className={heading}>{title}</h2>
-            <ul className="space-y-3 text-muted-foreground">
-              {links.map(([href, label]) => (
-                <li key={href}>
-                  <Link href={href} className={link}>{label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ))}
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-[1fr_1fr_1fr_1.35fr] lg:col-span-8">
+          {columns.map(([title, links]) => (
+            <nav key={title} aria-label={title} className="flex flex-col gap-4">
+              <h2 className="font-sans text-base font-semibold tracking-normal">{title}</h2>
+              <ul className="space-y-3 text-[0.9375rem]">
+                {links.map(([href, label]) => (
+                  <li key={href}><Link href={href} className={link}>{label}</Link></li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+          <div className="col-span-2 flex flex-col gap-4 sm:col-span-1">
+            <h2 className="font-sans text-base font-semibold tracking-normal">Office</h2>
+            <address className="space-y-3 text-[0.9375rem] text-muted-foreground not-italic">
+              <a href={site.mapsUrl} target="_blank" rel="noopener" className={`${row} hover:text-foreground`}>
+                <MapPinIcon weight="duotone" className={icon} />
+                <span>
+                  {site.address.street}
+                  <br />
+                  <span className="whitespace-nowrap">{site.address.locality}, {site.address.region} {site.address.postalCode.slice(0, 5)}</span>
+                </span>
+              </a>
+              <a href={`mailto:${site.email}`} className={`${row} hover:text-foreground`}>
+                <EnvelopeSimpleIcon weight="duotone" className={icon} />
+                <span className="break-words">{site.email}</span>
+              </a>
+              <span className={row}>
+                <PrinterIcon weight="duotone" className={icon} />
+                Fax {site.fax}
+              </span>
+            </address>
+          </div>
+        </div>
       </Container>
-
-      <Separator />
-      <Container className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 py-6 text-center text-sm font-medium">
-        <p>© {new Date().getFullYear()} {site.legalName} All rights reserved.</p>
-        {legal.map(([href, label]) => (
-          <span key={href} className="flex items-center gap-2">
-            <span aria-hidden className="text-muted-foreground">·</span>
-            <Link href={href} className={link}>{label}</Link>
-          </span>
-        ))}
+      <Container>
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t py-6 text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} {site.legalName} All rights reserved.</p>
+          <div className="flex gap-6">
+            {legal.map(([href, label]) => <Link key={href} href={href} className={link}>{label}</Link>)}
+          </div>
+        </div>
+      </Container>
+      {/* SVG so the word is stretched to exactly the container width at every screen size; it fades out downward. */}
+      <Container aria-hidden className="pointer-events-none select-none">
+        <svg viewBox="0 0 1000 118" className="-mb-[2%] block w-full text-primary">
+          <defs>
+            <linearGradient id="footer-wordmark" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="currentColor" stopOpacity="0.16" />
+              <stop offset="1" stopColor="currentColor" stopOpacity="0.02" />
+            </linearGradient>
+          </defs>
+          <text x="500" y="112" textAnchor="middle" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="url(#footer-wordmark)" className="font-sans text-[148px] font-extrabold">
+            METROPOLITAN
+          </text>
+        </svg>
       </Container>
     </footer>
   );

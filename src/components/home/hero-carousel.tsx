@@ -62,7 +62,7 @@ export function HeroCarousel({ slides, className }: { slides: HeroSlide[]; class
       role="region"
       aria-roledescription="carousel"
       aria-label="Metropolitan care at home"
-      className={cn("group relative overflow-hidden rounded-2xl bg-forest-dark", className)}
+      className={cn("group relative overflow-hidden rounded-2xl bg-pine", className)}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -102,7 +102,7 @@ export function HeroCarousel({ slides, className }: { slides: HeroSlide[]; class
                 i === index && !still ? "scale-105" : "scale-100"
               )}
             />
-            <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-forest-dark/90 via-forest-dark/45 to-transparent px-6 pt-20 pr-32 pb-6 text-white sm:px-7 sm:pr-56 sm:pb-7">
+            <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-pine/90 via-pine/45 to-transparent px-6 pt-20 pr-32 pb-6 text-white sm:px-7 sm:pr-56 sm:pb-7">
               <strong className="block text-lg leading-snug font-semibold">{s.title}</strong>
               <span className="text-small text-white/85">{s.text}</span>
             </figcaption>

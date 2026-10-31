@@ -64,18 +64,18 @@ export function ProcessStack({ items }: { items: Pair[] }) {
           <li
             key={title}
             style={{ "--pin": `${TOP + i * OFFSET}px` } as React.CSSProperties}
-            className="origin-top rounded-2xl border bg-card p-7 shadow-[0_18px_40px_-24px_rgb(18_48_29/0.35)] will-change-transform md:p-9 lg:sticky lg:top-(--pin) lg:min-h-[300px]"
+            className="origin-top rounded-2xl bg-card p-7 shadow-[0_18px_40px_-24px_rgb(18_48_29/0.35)] ring-1 ring-foreground/10 will-change-transform md:p-9 lg:sticky lg:top-(--pin) lg:min-h-[300px]"
           >
             <div className="mb-8 flex items-start justify-between gap-4">
-              <span className="grid size-16 place-items-center rounded-2xl bg-sage text-forest">
-                <Glyph weight="duotone" className="size-9" />
+              <span className="grid size-14 place-items-center rounded-xl bg-primary/10 text-primary">
+                <Glyph weight="duotone" className="size-7" />
               </span>
-              <span className="text-[2.75rem] leading-none font-semibold tracking-[-0.04em] text-sage-2 tabular-nums">
+              <span className="text-[2.75rem] leading-none font-semibold tracking-[-0.04em] text-primary/20 tabular-nums">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>
-            <h3 className="mb-3 text-h3 leading-tight font-semibold tracking-[-0.02em]">{title}</h3>
-            <p className="max-w-[460px] text-lg text-ink-2">{body}</p>
+            <h3 className="mb-3 text-xl font-semibold sm:text-2xl">{title}</h3>
+            <p className="max-w-[460px] text-base leading-relaxed text-muted-foreground sm:text-lg">{body}</p>
           </li>
         );
       })}

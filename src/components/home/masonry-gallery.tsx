@@ -13,7 +13,7 @@ const src = (slot: string) => `/images/${slot}.webp`;
 const srcSet = (slot: string) => `/images/${slot}-640.webp 640w, /images/${slot}.webp 1200w`;
 
 // Masonry photo wall: tiles rise in with the site's scroll reveal (data-reveal-items), zoom on hover
-// with the caption sliding up, and open in a lightbox (arrow buttons, arrow keys, Esc or backdrop click to close).
+// with the caption sliding up, and open in a lightbox (side arrows, arrow keys, Esc or backdrop click to close; the page stops scrolling meanwhile).
 export function MasonryGallery({ items }: { items: GalleryItem[] }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState<number | null>(null);
@@ -29,9 +29,20 @@ export function MasonryGallery({ items }: { items: GalleryItem[] }) {
     if (!d.open) d.showModal();
   }, [open]);
 
+  // Keep the page behind the viewer from scrolling while it is open.
+  useEffect(() => {
+    if (open === null) return;
+    const html = document.documentElement;
+    const prev = html.style.overflow;
+    html.style.overflow = "hidden";
+    return () => {
+      html.style.overflow = prev;
+    };
+  }, [open]);
+
   const step = (dir: number) => setOpen((i) => (i === null ? i : (i + dir + count) % count));
 
-  const control = "grid size-11 place-items-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/25 focus-visible:outline-white";
+  const control = "grid size-12 place-items-center rounded-full bg-white/12 text-white ring-1 ring-white/20 backdrop-blur-md transition-colors hover:bg-white hover:text-[#1d2a22] focus-visible:outline-white";
 
   return (
     <>
@@ -55,7 +66,7 @@ export function MasonryGallery({ items }: { items: GalleryItem[] }) {
                 decoding="async"
                 className="size-full object-cover transition-transform duration-900 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:scale-[1.06]"
               />
-              <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-forest-dark/80 via-forest-dark/30 to-transparent px-5 pt-14 pb-4 text-white transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] [@media(hover:hover)]:translate-y-2 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:translate-y-0 [@media(hover:hover)]:group-focus-visible:opacity-100">
+              <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-pine/80 via-pine/30 to-transparent px-5 pt-14 pb-4 text-white transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] [@media(hover:hover)]:translate-y-2 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:translate-y-0 [@media(hover:hover)]:group-focus-visible:opacity-100">
                 <span className="block text-base leading-snug font-semibold">{item.caption}</span>
               </span>
             </button>
@@ -72,22 +83,27 @@ export function MasonryGallery({ items }: { items: GalleryItem[] }) {
           if (e.key === "ArrowRight") step(1);
           if (e.key === "ArrowLeft") step(-1);
         }}
-        className="m-auto max-h-none max-w-none bg-transparent p-0 backdrop:bg-forest-dark/90 backdrop:backdrop-blur-sm"
+        className="m-auto max-h-none max-w-none overflow-visible bg-transparent p-0 backdrop:bg-black/85 backdrop:backdrop-blur-sm"
       >
         {open !== null && (
-          <figure className="m-0 flex w-[min(92vw,1100px)] flex-col items-center gap-4">
-            <img src={src(items[open].slot)} width={1200} height={900} alt={items[open].caption} className="max-h-[78vh] w-full rounded-2xl object-contain" />
-            <figcaption className="flex w-full items-center justify-between gap-4 text-white">
-              <span className="font-semibold">{items[open].caption}</span>
-              <span className="text-sm text-white/70 tabular-nums">{open + 1} / {count}</span>
+          // The figure shrinks to the photo, so the caption bar lines up with the photo's edges.
+          <figure className="m-0 flex w-fit flex-col gap-3">
+            <img
+              src={src(items[open].slot)}
+              width={1200}
+              height={900}
+              alt={items[open].caption}
+              className="block max-h-[78vh] w-auto max-w-[min(88vw,1100px)] rounded-xl object-contain shadow-[0_30px_80px_-20px_rgb(0_0_0/0.6)]"
+            />
+            <figcaption className="flex items-center justify-between gap-4 text-white">
+              <span className="text-base font-semibold sm:text-lg">{items[open].caption}</span>
+              <span className="shrink-0 rounded-full bg-white/15 px-3 py-1 text-sm text-white/85 tabular-nums">{open + 1} / {count}</span>
             </figcaption>
           </figure>
         )}
-        <div className="fixed top-4 right-4 flex gap-2">
-          <button type="button" aria-label="Previous photo" onClick={() => step(-1)} className={control}><CaretLeftIcon className="size-5" /></button>
-          <button type="button" aria-label="Next photo" onClick={() => step(1)} className={control}><CaretRightIcon className="size-5" /></button>
-          <button type="button" aria-label="Close" onClick={() => setOpen(null)} className={control}><XIcon className="size-5" /></button>
-        </div>
+        <button type="button" aria-label="Close" onClick={() => setOpen(null)} className={`${control} fixed top-4 right-4 sm:top-6 sm:right-6`}><XIcon className="size-5" /></button>
+        <button type="button" aria-label="Previous photo" onClick={() => step(-1)} className={`${control} fixed bottom-6 left-1/2 -translate-x-[calc(100%+0.375rem)] sm:top-1/2 sm:bottom-auto sm:left-6 sm:translate-x-0 sm:-translate-y-1/2`}><CaretLeftIcon className="size-5" /></button>
+        <button type="button" aria-label="Next photo" onClick={() => step(1)} className={`${control} fixed bottom-6 left-1/2 translate-x-1.5 sm:top-1/2 sm:right-6 sm:bottom-auto sm:left-auto sm:translate-x-0 sm:-translate-y-1/2`}><CaretRightIcon className="size-5" /></button>
       </dialog>
     </>
   );

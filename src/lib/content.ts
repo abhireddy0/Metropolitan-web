@@ -28,7 +28,6 @@ export type Service = {
 
 export type County = { name: string; population: string; cities: string[]; response: string };
 export type Certificate = { image: string; width: number; height: number; title: string; text: string; badge: string };
-export type Insurer = { name: string; description: string; coverage: string; accepting: boolean };
 export type Faq = { q: string; a: string; category: "insurance" | "general" | "services" };
 
 export const site = {
@@ -426,7 +425,7 @@ export const faqs: Faq[] = [
   { category: "insurance", q: "Can I use private funds to pay?", a: "Yes, please call the billing department for our charges." },
   { category: "general", q: "What is home health care?", a: "Home health care is medical care provided in the comfort of your own home by licensed healthcare professionals. Our services include skilled nursing, physical therapy, occupational therapy, speech therapy, home health aides, and medical social services. This allows patients to recover and receive care in familiar surroundings while maintaining their independence." },
   { category: "general", q: "Who qualifies for home health care services?", a: "Patients typically qualify for home health care if they: are homebound (unable to leave home without considerable effort), need skilled medical care, have a physician's order for home health services, and require intermittent (not 24-hour) care. Common conditions include recovery from surgery, chronic illnesses, injuries, or conditions requiring ongoing medical management." },
-  { category: "general", q: "What areas do you serve?", a: "We proudly serve six counties in the Chicago metropolitan area: Cook, Lake, DuPage, Will, McHenry, and Kane counties. Our coverage includes major cities like Chicago, Naperville, Evanston, Joliet, Aurora, Elgin, and many more communities throughout the region." },
+  { category: "general", q: "What areas do you serve?", a: "We proudly serve 10 counties across the Chicago metropolitan area and Northern Illinois: Cook, Lake, DuPage, Will, McHenry, Kane, LaSalle, Grundy, Kankakee, and DeKalb. Our coverage includes major cities like Chicago, Naperville, Evanston, Joliet, Aurora, Elgin, and many more communities throughout the region." },
   { category: "general", q: "How do I start home health care services?", a: "Starting services is simple: 1) Contact us at 847-568-1033 for an initial consultation, 2) Your physician provides orders for home health services, 3) We verify your insurance coverage, 4) Our clinical team conducts an in-home assessment, 5) We develop a personalized care plan and begin services. Most patients can start receiving care within 24-48 hours." },
   { category: "services", q: "What does skilled nursing include?", a: "Our skilled nursing services include medication management and administration, wound care and dressing changes, IV therapy and injections, disease monitoring and assessment, patient and family education, and care plan coordination. All our nurses are licensed, registered professionals with extensive home health experience." },
   { category: "services", q: "What conditions benefit from home physical therapy?", a: "Home physical therapy helps with recovery from surgery, stroke rehabilitation, balance and fall prevention, pain management, mobility improvement, and chronic condition management. Our therapists provide strength exercises, gait training, balance training, and adaptive equipment recommendations." },
@@ -438,7 +437,7 @@ export const faqs: Faq[] = [
 export const serviceAreas = {
   title: "Service Areas",
   sub: "Serving the Greater Chicago Metropolitan Area",
-  text: "Metropolitan Home Health Care proudly serves Cook, Lake, DuPage, Will, McHenry, and Kane counties across the Chicago metropolitan area. Our comprehensive home healthcare services reach communities throughout Northern Illinois, delivering professional medical care where you need it most.",
+  text: "Metropolitan Home Health Care proudly serves 10 counties across the Chicago metropolitan area: Cook, Lake, DuPage, Will, McHenry, Kane, LaSalle, Grundy, Kankakee, and DeKalb. Our comprehensive home healthcare services reach communities throughout Northern Illinois, delivering professional medical care where you need it most.",
   mapTitle: "Service Coverage Map",
   touchTitle: "Get in touch",
   touchText: "Call us anytime for assistance and support",
@@ -500,6 +499,20 @@ export const careers = {
       ["Work-Life Balance", "Flexible scheduling, paid time off, and family support programs"],
     ] as Pair[],
   },
+  // The disciplines behind our services; a standing list of who we hire, not live job openings.
+  roles: {
+    title: "Roles we hire for",
+    sub: "We're always glad to hear from licensed, compassionate clinicians and caregivers.",
+    items: ["Registered Nurses", "Physical Therapists", "Occupational Therapists", "Speech-Language Pathologists", "Medical Social Workers", "Home Health Aides"],
+    note: "Don't see your role? Send us your resume anyway.",
+  },
+  faqs: [
+    { q: "How do I apply?", a: "Email your resume to metro@emetrocare.com with a short note about your role and experience, or call us at (847) 568-1033. Our team reviews every application." },
+    { q: "What licenses or certifications do I need?", a: "Clinical roles require a current Illinois license or certification for your discipline, such as an RN license or a home health aide certification. We'll confirm the exact requirements for the role you apply for." },
+    { q: "Do you offer flexible schedules?", a: "Yes. We offer flexible scheduling and paid time off, so you can balance patient visits with life at home." },
+    { q: "Is there support for continuing education?", a: "Yes. We support continuing education and certifications, with clear opportunities to advance your career." },
+    { q: "What benefits do you offer?", a: "Medical, dental and vision coverage, wellness programs, competitive pay with performance bonuses, retirement planning, paid time off and family support programs." },
+  ] as { q: string; a: string }[],
 };
 
 export const contactPage = {
@@ -517,7 +530,7 @@ export const contactPage = {
       ["Response Time", "Within 24 hours"],
     ] as Pair[],
   },
-  counties: { title: "Counties We Serve", items: ["Cook", "Lake", "DuPage", "Will", "McHenry", "Kane", "Grundy", "Kankakee"], link: "View Detailed Coverage Map" },
+  counties: { title: "Counties We Serve", items: ["Cook", "Lake", "DuPage", "Will", "McHenry", "Kane", "LaSalle", "Grundy", "Kankakee", "DeKalb"], link: "View Detailed Coverage Map" },
   partner: {
     title: "Trusted Healthcare Partner",
     sub: "15+ years of excellence in home healthcare",
@@ -529,53 +542,7 @@ export const contactPage = {
   },
 };
 
-export const insurancePage = {
-  title: "Insurance Coverage",
-  sub: "We accept most major insurance plans and work with you to maximize your benefits. Find detailed information about your coverage and verify your benefits.",
-  badges: ["14+ Insurance Plans", "Pre-Authorization Help"],
-  cta: "Check Your Eligibility",
-  quick: {
-    verify: ["Verify Coverage", "Check your insurance benefits and coverage details", "Verify Now"],
-    help: ["Get Help", "Speak with our insurance specialists"],
-  },
-  tabs: ["Insurance Providers", "Coverage Benefits", "Authorization Process"],
-  providers: [
-    { name: "Medicare", description: "Federal health insurance for 65+ and disabled individuals", coverage: "Comprehensive home health coverage", accepting: true },
-    { name: "Medicaid", description: "State and federal program for low-income individuals", coverage: "Extensive home health benefits", accepting: true },
-    { name: "Blue Cross Blue Shield", description: "Leading health insurance provider nationwide", coverage: "Varies by plan - most cover home health", accepting: true },
-    { name: "Aetna", description: "Comprehensive health insurance plans", coverage: "Home health covered with authorization", accepting: true },
-    { name: "Cigna", description: "Global health service company", coverage: "Home health benefits included", accepting: true },
-    { name: "Humana", description: "Medicare Advantage and health plans", coverage: "Strong home health coverage", accepting: true },
-    { name: "United Healthcare", description: "Largest health insurer in the US", coverage: "Comprehensive home health benefits", accepting: true },
-    { name: "Anthem", description: "Blue Cross Blue Shield affiliated plans", coverage: "Home health services covered", accepting: true },
-    { name: "Kaiser Permanente", description: "Integrated healthcare delivery system", coverage: "Coordinated home health care", accepting: false },
-    { name: "TRICARE", description: "Military health care program", coverage: "Home health for eligible beneficiaries", accepting: true },
-    { name: "Centene", description: "Managed care organization", coverage: "Medicaid and marketplace plans", accepting: true },
-    { name: "Molina Healthcare", description: "Medicaid and Medicare plans", coverage: "Home health benefits available", accepting: true },
-    { name: "WellCare", description: "Medicare and Medicaid plans", coverage: "Home health services included", accepting: true },
-    { name: "Independence Blue Cross", description: "Regional Blue Cross plan", coverage: "Home health coverage available", accepting: true },
-  ] as Insurer[],
-  benefits: {
-    title: "Home Health Services Covered by Most Plans",
-    sub: "The following services are typically covered by most major insurance plans",
-    clinical: ["Skilled nursing care", "Physical therapy", "Occupational therapy", "Speech-language pathology", "Medical social services", "Wound care management"],
-    support: ["Home health aide services", "Durable medical equipment", "Medical supplies", "Patient education", "Care coordination", "Disease management"],
-  },
-  authorization: {
-    title: "Insurance Authorization Process",
-    sub: "How we work with your insurance to ensure coverage",
-    steps: [
-      ["Initial Verification", "We verify your insurance coverage and benefits before your first visit"],
-      ["Prior Authorization", "If required, we obtain prior authorization from your insurance company"],
-      ["Care Plan Approval", "Your doctor's care plan is submitted and approved by your insurance"],
-      ["Service Delivery", "We provide authorized services and handle all insurance paperwork"],
-      ["Ongoing Management", "We manage renewals and updates to keep your coverage active"],
-    ] as Pair[],
-  },
-};
-
 export const nav: [href: string, label: string][] = [
-  ["/insurance", "Insurance"],
   ["/service-areas", "Service Areas"],
   ["/about", "About"],
   ["/careers", "Careers"],
