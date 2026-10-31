@@ -1,16 +1,13 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLeftIcon, ArrowRightIcon, CalendarBlankIcon, CaretRightIcon, ClockIcon, InfoIcon, ListBulletsIcon, UserCircleIcon } from "@phosphor-icons/react/ssr";
 import { BlogCard, formatDate, PostCover } from "@/components/blog/post-card";
-import { Breadcrumbs, CallButton, TextLink } from "@/components/shared/blocks";
+import { CtaBand } from "@/components/shared/blocks";
 import { JsonLd } from "@/components/shared/json-ld";
-import { Container, Eyebrow, Section, SectionHeader } from "@/components/shared/section";
-import { InfoIcon } from "@phosphor-icons/react/ssr";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
+import { Container, Eyebrow } from "@/components/shared/section";
 import { buttonVariants } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { posts } from "@/lib/collections";
-import { hero } from "@/lib/content";
 import { abs, crumbsLd, pageMetadata } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -19,9 +16,10 @@ export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
 }
 
-const metaBadge = "h-auto bg-card px-3 py-1 text-small font-normal text-ink-2";
-
 const find = (slug: string) => posts.find((p) => p.slug === slug);
+
+// Staggers the header's page-load entrance (animate-rise in globals.css), the same way the other pages do.
+const rise = (ms: number) => ({ "--rise-delay": `${ms}ms` }) as CSSProperties;
 
 export async function generateMetadata({ params }: PageProps<"/blog/[slug]">) {
   const p = find((await params).slug);
@@ -38,7 +36,16 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
     ["Blog", "/blog"],
     [p.title, path],
   ];
+  const i = posts.indexOf(p);
+  const prev = posts[i - 1];
+  const next = posts[i + 1];
   const more = posts.filter((o) => o !== p).slice(0, 3);
+
+  const meta = [
+    { icon: UserCircleIcon, text: `By the ${p.author}` },
+    { icon: CalendarBlankIcon, text: <>Updated <time dateTime={p.updated}>{formatDate(p.updated)}</time></> },
+    { icon: ClockIcon, text: `${p.readingTime} min read` },
+  ];
 
   return (
     <>
@@ -60,58 +67,98 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           },
         ]}
       />
-      <article>
-        <header>
-          <Container className="pt-8 md:pt-12">
-            <Breadcrumbs items={crumbs} />
-            <Eyebrow className="mb-4">{p.category}</Eyebrow>
-            <h1 className="max-w-[900px] text-display leading-[1.1]">{p.title}</h1>
-            <p className="mt-5 max-w-[680px] text-lead text-ink-2">{p.summary}</p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              <li><Badge variant="outline" className={metaBadge}>By the {p.author}</Badge></li>
-              <li><Badge variant="outline" className={metaBadge}><time dateTime={p.updated}>Updated {formatDate(p.updated)}</time></Badge></li>
-              <li><Badge variant="outline" className={metaBadge}>{p.readingTime} min read</Badge></li>
+
+      {/* Full-width header and cover, then the article beside a sticky "In this guide" list. */}
+      <article className="py-10 sm:py-14 lg:py-16">
+        <Container>
+          <header className="space-y-5">
+            <nav aria-label="Breadcrumb" className="animate-rise">
+              <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm text-muted-foreground">
+                {crumbs.map(([name, href], n) => (
+                  <li key={href} className="inline-flex min-w-0 items-center gap-1.5">
+                    {n > 0 && <CaretRightIcon aria-hidden className="size-3.5 shrink-0" />}
+                    {n === crumbs.length - 1 ? (
+                      <span aria-current="page" className="line-clamp-1 font-medium text-foreground">{name}</span>
+                    ) : (
+                      <Link href={href} className="hover:text-primary">{name}</Link>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+            <Eyebrow className="animate-rise border-transparent bg-primary/10 text-primary">{p.category}</Eyebrow>
+            <h1 className="animate-rise text-[1.875rem] leading-[1.15] font-bold sm:text-[2.5rem] lg:text-[2.75rem]" style={rise(80)}>{p.title}</h1>
+            <p className="animate-rise max-w-[1000px] text-lg text-pretty text-muted-foreground sm:text-xl" style={rise(160)}>{p.summary}</p>
+          </header>
+
+          <div className="animate-rise mt-8 sm:mt-10" style={rise(240)}>
+            <PostCover post={p} eager sizes="(max-width: 1280px) 100vw, 1200px" className="aspect-video rounded-2xl lg:aspect-21/9" />
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-b pb-6 text-sm text-muted-foreground">
+              {meta.map(({ icon: Glyph, text }, n) => (
+                <li key={n} className="inline-flex items-center gap-2">
+                  <Glyph weight="duotone" className="size-4.5 text-primary" /> {text}
+                </li>
+              ))}
             </ul>
-            <PostCover post={p} eager sizes="(max-width: 1280px) 100vw, 1200px" className="mt-8 aspect-[16/8] rounded-2xl" />
-          </Container>
-        </header>
-        <Section inner="pt-10 md:pt-16">
-          <div className="grid gap-12 lg:grid-cols-[1fr_340px]">
-            <div>
-              <div className="prose-article" dangerouslySetInnerHTML={{ __html: p.body.html }} />
-              <Alert role="note" className="mt-12 max-w-[720px] gap-1 border-transparent bg-sand px-5 py-4">
-                <InfoIcon weight="duotone" className="size-5 text-leaf" />
-                <AlertTitle className="text-base font-semibold">Not medical advice</AlertTitle>
-                <AlertDescription className="text-small text-ink-2">
-                  This article is general information. Talk with your physician about your situation. In an emergency, call 911.
-                </AlertDescription>
-              </Alert>
-            </div>
-            <aside className="lg:sticky lg:top-28 lg:self-start">
-              <Card className="gap-5 rounded-2xl [--card-spacing:--spacing(7)]">
-                <CardHeader className="gap-2">
-                  <CardTitle>
-                    <h2 className="font-sans text-xl font-semibold tracking-normal">{hero.personalized.title}</h2>
-                  </CardTitle>
-                  <CardDescription className="text-base">{hero.personalized.text}</CardDescription>
-                </CardHeader>
-                <CardContent className="grid gap-3">
-                  <Link href="/contact#request" className={buttonVariants()}>{hero.personalized.cta}</Link>
-                  <CallButton />
-                </CardContent>
-              </Card>
-            </aside>
           </div>
-        </Section>
+
+          <div className="mt-8 grid gap-10 sm:mt-10 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-16">
+            <div className="min-w-0">
+              <div className="prose-article max-w-none [&_h2]:scroll-mt-28" dangerouslySetInnerHTML={{ __html: p.body.html }} />
+
+              <aside role="note" className="mt-12 flex gap-3 rounded-xl bg-muted px-5 py-4 text-sm text-muted-foreground dark:bg-card">
+                <InfoIcon weight="duotone" className="mt-0.5 size-5 shrink-0 text-primary" />
+                <p><strong className="block text-foreground">Not medical advice</strong>This article is general information. Talk with your physician about your situation. In an emergency, call 911.</p>
+              </aside>
+
+              {/* Previous and next guides, in list order. */}
+              <nav aria-label="Previous and next guides" className="mt-12 grid gap-3 border-t pt-8 sm:grid-cols-2">
+                {prev ? (
+                  <Link href={`/blog/${prev.slug}`} className="group rounded-xl p-4 ring-1 ring-foreground/10 transition hover:ring-primary/40">
+                    <span className="flex items-center gap-1.5 text-sm text-muted-foreground"><ArrowLeftIcon className="size-4 transition-transform group-hover:-translate-x-0.5" /> Previous guide</span>
+                    <span className="mt-1 line-clamp-2 block font-semibold group-hover:text-primary">{prev.title}</span>
+                  </Link>
+                ) : <span className="hidden sm:block" />}
+                {next && (
+                  <Link href={`/blog/${next.slug}`} className="group rounded-xl p-4 text-right ring-1 ring-foreground/10 transition hover:ring-primary/40">
+                    <span className="flex items-center justify-end gap-1.5 text-sm text-muted-foreground">Next guide <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" /></span>
+                    <span className="mt-1 line-clamp-2 block font-semibold group-hover:text-primary">{next.title}</span>
+                  </Link>
+                )}
+              </nav>
+            </div>
+
+            {p.body.sections.length > 0 && (
+              <aside aria-labelledby="toc-title" className="hidden lg:block">
+                <div className="sticky top-28">
+                  <p id="toc-title" className="mb-4 flex items-center gap-2 text-sm font-semibold"><ListBulletsIcon weight="duotone" className="size-4.5 text-primary" /> In this guide</p>
+                  <ol className="space-y-1 border-l">
+                    {p.body.sections.map((sec) => (
+                      <li key={sec.id}>
+                        <a href={`#${sec.id}`} className="-ml-px block border-l-2 border-transparent py-1.5 pl-4 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary">{sec.text}</a>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </aside>
+            )}
+          </div>
+        </Container>
       </article>
-      <Section tone="white" aria-labelledby="more-title">
-        <SectionHeader id="more-title" title="More guides">
-          <TextLink href="/blog">View All Articles</TextLink>
-        </SectionHeader>
-        <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {more.map((o) => <BlogCard key={o.slug} post={o} />)}
-        </div>
-      </Section>
+
+      <section aria-labelledby="more-title" className="border-t py-12 lg:py-16">
+        <Container>
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <h2 id="more-title" className="text-2xl font-bold sm:text-3xl">More guides</h2>
+            <Link href="/blog" className={buttonVariants({ variant: "outline", size: "sm" })}>View all guides <ArrowRightIcon /></Link>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {more.map((o) => <BlogCard key={o.slug} post={o} />)}
+          </div>
+        </Container>
+      </section>
+
+      <CtaBand />
     </>
   );
 }

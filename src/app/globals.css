@@ -2,13 +2,16 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* Metropolitan design system: Inter throughout; palette from the logo green on warm neutrals. */
+/* Metropolitan design system: Montserrat throughout (as in the reference design); palette from the logo green on warm neutrals. */
+
+/* Dark mode follows <html data-theme="dark">, set before paint by the inline script in app/layout.tsx. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-inter);
+  --font-sans: var(--font-montserrat);
+  --font-display: var(--font-montserrat);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -28,6 +31,8 @@
   --color-brand: var(--brand);
   --color-forest: var(--forest);
   --color-forest-dark: var(--forest-dark);
+  /* Same deep green in both themes: for dark surfaces that carry white text (CTA band, photo overlays). */
+  --color-pine: #12301d;
   --color-leaf: var(--leaf);
   --color-sage: var(--sage);
   --color-sage-2: var(--sage-2);
@@ -66,41 +71,81 @@
 }
 
 :root {
-  --brand: #58b838;        /* logo green: decorative use only, fails contrast as text */
-  --forest: #1a4a2b;
-  --forest-dark: #12301d;
-  --leaf: #22613a;
-  --sage: #edf4e6;
-  --sage-2: #dcead0;
-  --sand: #f4eee4;
-  --ink-2: #3f4a43;
-  --line-strong: #d6cdbf;
-  --cta: #3a8440;          /* soft green: primary call to action (4.6:1 with white text) */
-  --cta-hover: #2f7035;
-  --cta-border: #68a862;   /* lighter rim around the green fill */
-  --soft: #e4ebda;         /* pale sage: secondary call to action */
-  --soft-hover: #d6e2c9;
-  --soft-border: #c3d2b5;
-  --soft-foreground: #2e6e33;
-  --background: #fbf8f2;
-  --foreground: #1d2a22;
-  --card: #ffffff;
-  --card-foreground: #1d2a22;
-  --popover: #ffffff;
-  --popover-foreground: #1d2a22;
-  --primary: #1a4a2b;
+  /* Palette taken 1:1 from the reference design (shadcn "Grow"); its green matches the logo. */
+  --brand: #58b838;        /* logo green: decorative use only */
+  --forest: #19601f;
+  --forest-dark: #09200b;
+  --leaf: #307b34;
+  --sage: #e9f6ea;
+  --sage-2: #cae8cb;
+  --sand: #efeae4;
+  --ink-2: #5f6561;
+  --line-strong: #dfd6c9;
+  --cta: #307b34;
+  --cta-hover: #3d8f40;
+  --cta-border: #4dae50;
+  --soft: #e9f6ea;
+  --soft-hover: #cae8cb;
+  --soft-border: #cae8cb;
+  --soft-foreground: #19601f;
+  --background: #f8f5ee;
+  --foreground: #2a332b;
+  --card: #f8f5ee;
+  --card-foreground: #402622;
+  --popover: #f8f5ee;
+  --popover-foreground: #402622;
+  --primary: #307b34;
   --primary-foreground: #ffffff;
-  --secondary: #f4eee4;
-  --secondary-foreground: #1d2a22;
-  --muted: #f4eee4;
-  --muted-foreground: #646b63;
-  --accent: #edf4e6;
-  --accent-foreground: #1a4a2b;
-  --destructive: #a3321a;
-  --border: #e4ddd1;
-  --input: #d6cdbf;
-  --ring: #1a4a2b;
-  --radius: 0.625rem;
+  --secondary: #e9f6ea;
+  --secondary-foreground: #19601f;
+  --muted: #efeae4;
+  --muted-foreground: #5f6561;
+  --accent: #cae8cb;
+  --accent-foreground: #19601f;
+  --destructive: #c52c2a;
+  --border: #d7d7d7;
+  --input: #dfd6c9;
+  --ring: #307b34;
+  --radius: 0.5rem;
+  color-scheme: light;
+}
+
+/* Reference dark palette. "forest" and "leaf" are mostly used as text, so they turn light here. */
+[data-theme="dark"] {
+  --forest: #81c984;
+  --forest-dark: #d7e2d6;
+  --leaf: #4dae50;
+  --sage: #303f32;
+  --sage-2: #3c493b;
+  --sand: #213023;
+  --ink-2: #939f95;
+  --line-strong: #3c493b;
+  --cta: #307b34;
+  --cta-hover: #3d8f40;
+  --cta-border: #4dae50;
+  --soft: #303f32;
+  --soft-hover: #3c493b;
+  --soft-border: #3c493b;
+  --soft-foreground: #d7e2d6;
+  --background: #253528;
+  --foreground: #c7ccc7;
+  --card: #303f32;
+  --card-foreground: #c7ccc7;
+  --popover: #2b3a2c;
+  --popover-foreground: #efeae4;
+  --primary: #4dae50;
+  --primary-foreground: #f5fff5;
+  --secondary: #3c493b;
+  --secondary-foreground: #d7e2d6;
+  --muted: #213023;
+  --muted-foreground: #939f95;
+  --accent: #3d8f40;
+  --accent-foreground: #efeae4;
+  --destructive: #c52c2a;
+  --border: #3c493b;
+  --input: #3c493b;
+  --ring: #4dae50;
+  color-scheme: dark;
 }
 
 @layer base {
@@ -205,7 +250,7 @@
       &::before {
         content: "";
         @apply absolute top-[0.4em] left-0 size-[18px] rounded-full bg-sage-2 bg-center bg-no-repeat;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%231a4a2b' stroke-width='3' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23307b34' stroke-width='3' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E");
       }
     }
     & ol {
@@ -230,8 +275,13 @@
     &::before {
       content: "";
       @apply absolute top-3.5 left-0 size-[18px] rounded-full bg-sage-2 bg-center bg-no-repeat;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%231a4a2b' stroke-width='3' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23307b34' stroke-width='3' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E");
     }
+  }
+
+  /* The check glyph above is drawn in forest green; swap it for the light green on the dark palette. */
+  [data-theme="dark"] :is(.prose-article ul li, .checklist li)::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2381c984' stroke-width='3' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E");
   }
 
   /* Numbered steps with a connecting line. */

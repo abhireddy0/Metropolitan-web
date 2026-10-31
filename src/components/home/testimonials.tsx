@@ -5,10 +5,9 @@ import { CaretLeftIcon, CaretRightIcon, QuotesIcon } from "@phosphor-icons/react
 import { Container, Eyebrow } from "@/components/shared/section";
 import type { Testimonial } from "@/lib/collections";
 import { stories } from "@/lib/content";
-import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-// Stock portraits (Unsplash) in public/images/avatars, named after the person; they are models, so the section carries a disclosure.
+// Stock portraits (Unsplash) in public/images/avatars, named after the person.
 const avatar = (name: string) => `/images/avatars/${name.toLowerCase().replace(/\s+/g, "-")}.webp`;
 
 // The quote's first sentence becomes the card headline; the rest is the body.
@@ -66,15 +65,15 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
     setDrag(0);
   };
 
-  const arrow = buttonVariants({ variant: "outline", size: "icon" });
+  const arrow = "grid size-11 place-items-center rounded-full border bg-card text-foreground shadow-xs transition-colors duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground focus-visible:ring-3 focus-visible:ring-ring/40 outline-none";
 
   return (
-    <section id="testimonials" aria-labelledby="stories-title" className="scroll-mt-20 bg-linear-to-b from-card to-sand">
-      <Container className="py-16 md:py-28">
-        <div className="mx-auto mb-10 grid max-w-2xl justify-items-center gap-4 text-center md:mb-14">
-          <Eyebrow>{stories.eyebrow}</Eyebrow>
-          <h2 id="stories-title" className="text-h2 leading-[1.15]">{stories.title}</h2>
-          <p className="text-lg text-ink-2">{stories.sub}</p>
+    <section id="testimonials" aria-labelledby="stories-title" className="scroll-mt-20 bg-muted">
+      <Container className="py-16 lg:py-24">
+        <div className="mx-auto mb-10 flex max-w-[720px] flex-col items-center gap-3 text-center sm:mb-14">
+          <Eyebrow className="self-center">{stories.eyebrow}</Eyebrow>
+          <h2 id="stories-title" className="mt-1 text-2xl font-bold sm:text-3xl lg:text-4xl">{stories.title}</h2>
+          <p className="text-base text-muted-foreground sm:text-lg">{stories.sub}</p>
         </div>
 
         <div
@@ -87,7 +86,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
           onFocus={() => setPaused(true)}
           onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setPaused(false)}
         >
-          <div className="overflow-hidden rounded-[1.25rem] bg-card shadow-[0_0_30px_0_rgb(0_0_0/0.12)]">
+          <div className="overflow-hidden rounded-2xl bg-card shadow-[0_24px_50px_-30px_rgb(18_48_29/0.35)] ring-1 ring-foreground/8">
             <div
               className={cn("flex touch-pan-y", drag === 0 && "transition-transform duration-600 ease-[cubic-bezier(0.22,1,0.36,1)]")}
               style={{ transform: `translateX(${(-index + drag) * 100}%)` }}
@@ -109,7 +108,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
                     className="m-0 flex w-full shrink-0 flex-col p-6 pb-8 select-none md:flex-row md:items-center md:px-10 md:pt-15 md:pb-12"
                   >
                     <figcaption className="flex items-center gap-4 md:w-[30%] md:flex-col md:justify-center md:text-center">
-                      <img src={avatar(t.name)} alt="" aria-hidden width={120} height={120} decoding="async" draggable={false} className="size-14 shrink-0 rounded-full bg-sage object-cover ring-4 ring-sage-2/60 md:mb-2 md:size-30" />
+                      <img src={avatar(t.name)} alt="" aria-hidden width={120} height={120} decoding="async" draggable={false} className="size-14 shrink-0 rounded-full bg-muted object-cover ring-4 ring-primary/15 md:mb-2 md:size-30" />
                       <span>
                         <strong className="block text-lg font-semibold">{t.name}</strong>
                         <span className="block text-sm text-muted-foreground">{t.role}</span>
@@ -117,9 +116,9 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
                       </span>
                     </figcaption>
                     <blockquote className="mt-6 border-t border-foreground/15 pt-6 md:mt-0 md:w-[70%] md:border-t-0 md:border-l md:pt-0 md:pl-15">
-                      <QuotesIcon weight="fill" className="mb-5 size-8 text-sage-2" />
+                      <QuotesIcon weight="fill" className="mb-5 size-8 text-primary/25" />
                       <p className="mb-4 text-lg leading-relaxed font-semibold md:text-title md:leading-[1.875rem]">{title}</p>
-                      {body && <p className="text-small leading-relaxed text-ink-2 md:text-base">{body}</p>}
+                      {body && <p className="text-small leading-relaxed text-muted-foreground md:text-base">{body}</p>}
                     </blockquote>
                   </figure>
                 );
@@ -137,13 +136,12 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
                   aria-label={`Show story ${i + 1}`}
                   aria-current={i === index}
                   onClick={() => go(i)}
-                  className={cn("h-2 rounded-full transition-all duration-500", i === index ? "w-7 bg-cta" : "w-2 bg-line-strong hover:bg-leaf/50")}
+                  className={cn("h-2 rounded-full transition-all duration-500", i === index ? "w-7 bg-primary" : "w-2 bg-foreground/20 hover:bg-primary/50")}
                 />
               ))}
             </div>
             <button type="button" className={arrow} onClick={() => go(index + 1)} aria-label="Next story"><CaretRightIcon className="size-[18px]" /></button>
           </div>
-          <p className="mt-5 text-center text-xs text-muted-foreground">Photos are of models and are for illustration only.</p>
           <p aria-live={paused ? "polite" : "off"} className="sr-only">{`Story ${index + 1} of ${count}: ${items[index].name}`}</p>
         </div>
       </Container>

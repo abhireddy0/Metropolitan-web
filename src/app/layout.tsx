@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { JsonLd } from "@/components/shared/json-ld";
 import { Shell } from "@/layout/shell";
 import { site } from "@/lib/content";
 import { orgLd } from "@/lib/seo";
 import "./globals.css";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"], style: ["normal", "italic"] });
+const montserrat = Montserrat({ variable: "--font-montserrat", subsets: ["latin"], style: ["normal", "italic"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -20,12 +20,22 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbf8f2",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8f5ee" },
+    { media: "(prefers-color-scheme: dark)", color: "#253528" },
+  ],
 };
+
+// Runs before first paint: a saved choice from the theme toggle wins, otherwise follow the OS setting.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}})()`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-US" className={inter.variable}>
+    <html lang="en-US" data-theme="light" className={montserrat.variable} suppressHydrationWarning>
+      <head>
+        {/* type flips to text/plain on the client so React doesn't warn about rendering a script; the server copy already ran. */}
+        <script type={typeof window === "undefined" ? "text/javascript" : "text/plain"} suppressHydrationWarning dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <JsonLd data={orgLd} />
         <Shell>{children}</Shell>

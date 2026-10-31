@@ -13,7 +13,8 @@
     { "source": "/blog/9", "destination": "/blog/medication-management-at-home", "permanent": true },
     { "source": "/awards", "destination": "/certificates", "permanent": true },
     { "source": "/services/home-maker", "destination": "/services/homemaker", "permanent": true },
-    { "source": "/insurance/:id", "destination": "/insurance", "permanent": true },
+    { "source": "/insurance", "destination": "/contact", "permanent": true },
+    { "source": "/insurance/:path*", "destination": "/contact", "permanent": true },
     { "source": "/logo.png", "destination": "/images/logos/logo.png", "permanent": true },
     { "source": "/favicon.png", "destination": "/images/logos/favicon-32.png", "permanent": true }
   ],

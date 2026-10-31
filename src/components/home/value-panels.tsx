@@ -26,11 +26,11 @@ export function ValuePanels({ items }: { items: Pair[] }) {
             key={title}
             onMouseEnter={() => setActive(i)}
             className={cn(
-              "relative overflow-hidden rounded-3xl border transition-[flex-grow,background-color,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:min-w-0 lg:basis-0",
-              open ? "border-cta bg-linear-to-b from-[#4a9a46] to-cta text-white lg:grow-[5]" : "border-line-strong/70 bg-sand hover:bg-sage lg:grow"
+              "relative overflow-hidden rounded-2xl border transition-[flex-grow,background-color,border-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:min-w-0 lg:basis-0",
+              open ? "border-transparent bg-cta text-white lg:grow-[5]" : "border-transparent bg-card ring-1 ring-foreground/10 hover:ring-primary/30 lg:grow"
             )}
           >
-            <Glyph aria-hidden weight="duotone" className={cn("pointer-events-none absolute -top-6 -right-6 hidden size-56 text-white/[0.12] transition-opacity duration-700 lg:block", open ? "opacity-100" : "opacity-0")} />
+            <Glyph aria-hidden weight="duotone" className={cn("pointer-events-none absolute -top-6 -right-6 hidden size-56 text-white/[0.08] transition-opacity duration-700 lg:block", open ? "opacity-100" : "opacity-0")} />
             <button
               type="button"
               aria-expanded={open}
@@ -40,14 +40,14 @@ export function ValuePanels({ items }: { items: Pair[] }) {
             >
               {/* Phones: icon, title, number in one row (contents lets them join the button's flex row). */}
               <span className="contents lg:flex lg:w-full lg:flex-col lg:items-start">
-                <span className={cn("grid size-12 shrink-0 place-items-center rounded-xl transition-colors", open ? "bg-white/15 text-white" : "bg-background text-leaf")}>
+                <span className={cn("grid size-12 shrink-0 place-items-center rounded-xl transition-colors", open ? "bg-white/15 text-white" : "bg-primary/10 text-primary")}>
                   <Glyph weight="duotone" className="size-7" />
                 </span>
-                <span className={cn("order-last text-sm font-semibold tracking-[0.1em] tabular-nums lg:hidden", open ? "text-white/80" : "text-leaf")}>{num(i)}</span>
+                <span className={cn("order-last text-sm font-semibold tracking-[0.1em] tabular-nums lg:hidden", open ? "text-white/80" : "text-primary")}>{num(i)}</span>
               </span>
               {/* Closed strips on desktop: number and title running upward. */}
               <span aria-hidden={open} className={cn("hidden items-center gap-3 whitespace-nowrap [writing-mode:vertical-rl] rotate-180", !open && "lg:flex")}>
-                <span className="text-sm font-semibold tracking-[0.1em] text-leaf tabular-nums">{num(i)}</span>
+                <span className="text-sm font-semibold tracking-[0.1em] text-primary tabular-nums">{num(i)}</span>
                 <span className="text-lg font-semibold tracking-[-0.01em]">{title}</span>
               </span>
               <h3 className={cn("flex-1 text-title leading-tight font-semibold tracking-[-0.02em] lg:sr-only", open && "text-white")}>{title}</h3>
