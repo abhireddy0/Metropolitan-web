@@ -72,7 +72,7 @@ export default function ContactPage() {
       {/* Side by side: direct contact details as a divided list on the left, the form on the right. */}
       <section aria-labelledby="request-title" className="py-14 lg:py-20">
         <Container className="grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-0">
-          <div className="lg:pr-14">
+          <div className="border-t pt-12 lg:border-t-0 lg:pt-0 lg:pr-14">
             <h2 className="text-2xl font-bold sm:text-3xl">Reach us directly</h2>
             <p className="mt-2 text-muted-foreground">Call, email or stop by. We&apos;re glad to help with any question.</p>
             <ul className="mt-8 divide-y divide-foreground/10 border-y border-foreground/10">
@@ -96,7 +96,8 @@ export default function ContactPage() {
             </ul>
           </div>
 
-          <div id="request" className="scroll-mt-28 border-t pt-12 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-14">
+          {/* Phones and tablets: the form comes first, so it isn't buried below the contact list. */}
+          <div id="request" className="order-first scroll-mt-28 lg:order-none lg:border-l lg:pl-14">
             <div className="mb-8 space-y-2">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
                 <ClockIcon weight="bold" className="size-3.5" /> {responseRow[0]}: {responseRow[1].toLowerCase()}

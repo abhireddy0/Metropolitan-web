@@ -213,6 +213,18 @@
   animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--rise-delay, 0ms) both;
 }
 
+/* Home hero (soft style): the photo's blob outline slowly changes shape, and the icons around it bob up and down. */
+@keyframes blob {
+  50% {
+    border-radius: 42% 58% 45% 55% / 56% 44% 56% 44%;
+  }
+}
+@keyframes float {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 /* Underline that grows in from the left on hover (footer links). */
 @utility link-animated {
   background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat;

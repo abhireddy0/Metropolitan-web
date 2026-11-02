@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeftIcon, ArrowRightIcon, CalendarBlankIcon, CaretRightIcon, ClockIcon, InfoIcon, ListBulletsIcon, UserCircleIcon } from "@phosphor-icons/react/ssr";
+import { ArrowLeftIcon, ArrowRightIcon, CalendarBlankIcon, CaretDownIcon, CaretRightIcon, ClockIcon, InfoIcon, ListBulletsIcon, UserCircleIcon } from "@phosphor-icons/react/ssr";
 import { BlogCard, formatDate, PostCover } from "@/components/blog/post-card";
 import { CtaBand } from "@/components/shared/blocks";
 import { JsonLd } from "@/components/shared/json-ld";
@@ -104,6 +104,22 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
 
           <div className="mt-8 grid gap-10 sm:mt-10 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-16">
             <div className="min-w-0">
+              {/* Phones and tablets: the guide's sections fold away above the text (the sidebar list is lg only). */}
+              {p.body.sections.length > 0 && (
+                <details className="group mb-8 rounded-xl bg-card ring-1 ring-foreground/10 lg:hidden">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-sm font-semibold [&::-webkit-details-marker]:hidden">
+                    <span className="flex items-center gap-2"><ListBulletsIcon weight="duotone" className="size-4.5 text-primary" /> In this guide</span>
+                    <CaretDownIcon className="size-4 text-muted-foreground transition-transform group-open:rotate-180" />
+                  </summary>
+                  <ol className="space-y-1 border-t px-3 py-3">
+                    {p.body.sections.map((sec) => (
+                      <li key={sec.id}>
+                        <a href={`#${sec.id}`} className="block rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-primary">{sec.text}</a>
+                      </li>
+                    ))}
+                  </ol>
+                </details>
+              )}
               <div className="prose-article max-w-none [&_h2]:scroll-mt-28" dangerouslySetInnerHTML={{ __html: p.body.html }} />
 
               <aside role="note" className="mt-12 flex gap-3 rounded-xl bg-muted px-5 py-4 text-sm text-muted-foreground dark:bg-card">

@@ -13,7 +13,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-pine focus:px-4 focus:py-2.5 focus:text-white">
         Skip to content
       </a>
-      <div className="flex min-h-screen flex-col overflow-x-clip pb-[72px] md:pb-0">
+      <div className="flex min-h-dvh flex-col overflow-x-clip pb-[72px] md:pb-0">
         <SiteHeader />
         <main id="main" className="flex-1">
           {children}

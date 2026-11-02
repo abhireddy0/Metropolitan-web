@@ -95,7 +95,7 @@ export function PageHero({ crumbs, eyebrow, badges, title, lead, actions, aside,
   );
 }
 
-export function CallButton({ variant = "outline", size = "default", label = site.phone, className }: { variant?: "outline" | "light" | "green"; size?: "default" | "sm"; label?: string; className?: string }) {
+export function CallButton({ variant = "outline", size = "default", label = site.phone, className }: { variant?: "outline" | "light" | "green" | "ghost-light"; size?: "default" | "sm"; label?: string; className?: string }) {
   return (
     <a href={tel(site.phone)} className={cn(buttonVariants({ variant, size }), className)}>
       <PhoneIcon weight="duotone" /> {label}

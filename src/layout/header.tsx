@@ -105,10 +105,10 @@ export function SiteHeader() {
 
         <div className="ml-auto flex items-center gap-2.5 lg:ml-0">
           <ThemeToggle className="size-10" />
-          <a href={tel(site.phone)} aria-label={`Call ${site.phone}`} className={cn(buttonVariants({ variant: "outline", size: "icon" }), "hidden lg:inline-flex")}>
+          <a href={tel(site.phone)} aria-label={`Call ${site.phone}`} className={cn(buttonVariants({ variant: "outline", size: "icon" }), "hidden xl:inline-flex")}>
             <PhoneIcon weight="duotone" className="size-5" />
           </a>
-          <Link href="/contact#request" className={cn(buttonVariants({ size: "sm" }), "hidden lg:inline-flex")}>{hero.cta}</Link>
+          <Link href="/contact#request" className={cn(buttonVariants({ size: "sm" }), "hidden md:inline-flex")}>{hero.cta}</Link>
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger render={<button type="button" aria-label="Open menu" className={cn(buttonVariants({ variant: "outline", size: "icon" }), "lg:hidden")} />}>

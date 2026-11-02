@@ -68,7 +68,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
   const arrow = "grid size-11 place-items-center rounded-full border bg-card text-foreground shadow-xs transition-colors duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground focus-visible:ring-3 focus-visible:ring-ring/40 outline-none";
 
   return (
-    <section id="testimonials" aria-labelledby="stories-title" className="scroll-mt-20 bg-muted">
+    <section id="testimonials" aria-labelledby="stories-title" className="scroll-mt-28 bg-muted">
       <Container className="py-16 lg:py-24">
         <div className="mx-auto mb-10 flex max-w-[720px] flex-col items-center gap-3 text-center sm:mb-14">
           <Eyebrow className="self-center">{stories.eyebrow}</Eyebrow>

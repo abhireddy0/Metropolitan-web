@@ -59,7 +59,8 @@ export function AwardsTimeline({ awards, children }: { awards: Award[]; children
         </ol>
       </div>
 
-      <div className="relative">
+      {/* Below lg the certificate sits above the years, so a tapped year's image stays in view. */}
+      <div className="relative order-first lg:order-none">
         <div className="rounded-2xl bg-white p-3 shadow-[0_40px_80px_-40px_rgb(18_48_29/0.5)] ring-1 ring-black/5 sm:p-4">
           <div className="grid">
             {awards.map(({ c, year, label }, i) => (

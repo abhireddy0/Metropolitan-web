@@ -95,7 +95,7 @@ export function CertificateGrid({ items }: { items: CertificateItem[] }) {
               width={items[open].c.width}
               height={items[open].c.height}
               alt={alt(items[open])}
-              className="block max-h-[78vh] w-auto max-w-[min(88vw,1000px)] rounded-xl bg-white object-contain p-2 shadow-[0_30px_80px_-20px_rgb(0_0_0/0.6)] sm:p-3"
+              className="block max-h-[78dvh] w-auto max-w-[min(88vw,1000px)] sm:max-w-[min(calc(100vw-10rem),1000px)] rounded-xl bg-white object-contain p-2 shadow-[0_30px_80px_-20px_rgb(0_0_0/0.6)] sm:p-3"
             />
             <figcaption className="flex items-center justify-between gap-4 text-white">
               <span className="text-base font-semibold sm:text-lg">{items[open].year} {items[open].label}</span>

@@ -47,7 +47,7 @@ export function SiteFooter() {
             {site.phone}
           </a>
         </div>
-        <div className="grid grid-cols-2 gap-10 sm:grid-cols-[1fr_1fr_1fr_1.35fr] lg:col-span-8">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-[1fr_1fr_1fr_1.35fr] lg:col-span-8">
           {columns.map(([title, links]) => (
             <nav key={title} aria-label={title} className="flex flex-col gap-4">
               <h2 className="font-sans text-base font-semibold tracking-normal">{title}</h2>
@@ -58,7 +58,7 @@ export function SiteFooter() {
               </ul>
             </nav>
           ))}
-          <div className="col-span-2 flex flex-col gap-4 sm:col-span-1">
+          <div className="col-span-2 flex flex-col gap-4 md:col-span-1">
             <h2 className="font-sans text-base font-semibold tracking-normal">Office</h2>
             <address className="space-y-3 text-[0.9375rem] text-muted-foreground not-italic">
               <a href={site.mapsUrl} target="_blank" rel="noopener" className={`${row} hover:text-foreground`}>

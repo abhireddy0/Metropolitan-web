@@ -1,10 +1,9 @@
-import type { CSSProperties } from "react";
 import Link from "next/link";
-import { ArrowRightIcon, CertificateIcon, CheckCircleIcon, ClipboardTextIcon, IdentificationBadgeIcon, InfoIcon, LockKeyIcon, ReceiptIcon, ShieldCheckIcon, WalletIcon } from "@phosphor-icons/react/ssr";
+import { ArrowRightIcon, CertificateIcon, CheckCircleIcon, ClipboardTextIcon, IdentificationBadgeIcon, InfoIcon, LockKeyIcon, ReceiptIcon, ShieldCheckIcon, StethoscopeIcon, UsersThreeIcon, WalletIcon } from "@phosphor-icons/react/ssr";
 import type { Icon } from "@phosphor-icons/react";
 import { CallButton, CtaBand, FaqSection, MissionSplit } from "@/components/shared/blocks";
 import { JsonLd } from "@/components/shared/json-ld";
-import { HeroCarousel, type HeroSlide } from "@/components/home/hero-carousel";
+import { HeroMinimal } from "@/components/home/hero-minimal";
 import { MasonryGallery } from "@/components/home/masonry-gallery";
 import { AwardsTimeline, type Award } from "@/components/home/awards-timeline";
 import { ProcessStack } from "@/components/home/process-stack";
@@ -13,7 +12,7 @@ import { ValuePanels } from "@/components/home/value-panels";
 import { ServiceCard } from "@/components/services/service-card";
 import { Container, Eyebrow } from "@/components/shared/section";
 import { buttonVariants } from "@/components/ui/button";
-import { about, certificates, compliance, coreValues, faqs, firstVisit, gallery, hero, insurancePartners, services, servicesIntro, site, stats } from "@/lib/content";
+import { certificates, compliance, coreValues, faqs, firstVisit, gallery, hero, insurancePartners, services, servicesIntro, stats } from "@/lib/content";
 import { testimonials } from "@/lib/collections";
 import { faqLd, pageMetadata } from "@/lib/seo";
 
@@ -22,9 +21,6 @@ export const metadata = pageMetadata({
   title: "Metropolitan: Professional Home Healthcare Provider in Chicago",
   description: "We provide Home Healthcare in Chicago, offering skilled nursing, home health aides, physical therapy, and more. Licensed professionals delivering compassionate care at home.",
 });
-
-// Staggers the hero's page-load entrance (animate-rise in globals.css), the same way the other pages do.
-const rise = (ms: number) => ({ "--rise-delay": `${ms}ms` }) as CSSProperties;
 
 // How billing works, in plain words; the facts come from the insurance answers in the FAQ.
 const billing: { icon: Icon; title: string }[] = [
@@ -44,15 +40,13 @@ const insurerLogos: Record<string, [string, number, number, string]> = {
   "Commercial Cigna": ["cigna", 164, 60, "Cigna"],
 };
 
-const service = (slug: string) => services.find((s) => s.slug === slug)!;
-const nursing = service("skilled-nursing");
-const aide = service("health-aide");
-
-const heroSlides: HeroSlide[] = [
-  { slot: "pages/hero-nurse-visit", alt: "Metropolitan nurse sharing a laugh with an older woman during a home visit", title: about.award[0], text: about.award[1], position: "object-[35%_center]" },
-  { slot: nursing.image, alt: nursing.alt, title: nursing.heroTitle, text: nursing.heroSub },
-  { slot: aide.image, alt: aide.alt, title: aide.heroTitle, text: aide.heroSub },
+// The band under the hero; the Medicare point restates the insurance answers in the FAQ.
+const heroPoints: { icon: Icon; title: string; text: string }[] = [
+  { icon: StethoscopeIcon, title: "Skilled care at home", text: "Nurses and therapists who come to you, on your schedule." },
+  { icon: UsersThreeIcon, title: "One steady care team", text: "Clinicians who get to know you, your family and your goals." },
+  { icon: ReceiptIcon, title: "Medicare accepted", text: "We check your coverage before care begins, so there are no surprises." },
 ];
+
 
 /** Centred section heading, matching the other redesigned pages. */
 function Heading({ eyebrow, title, sub, id, children }: { eyebrow: string; title: string; sub?: string; id: string; children?: React.ReactNode }) {
@@ -71,46 +65,26 @@ export default function HomePage() {
     <>
       <JsonLd data={faqLd(faqs.map((f) => [f.q, f.a]))} />
 
-      {/* Hero band under the transparent header: text on the left, the photo slider on the right, then the numbers. */}
-      <section className="-mt-[70px] overflow-hidden bg-muted pt-[calc(70px+2rem)] pb-12 sm:pt-[calc(70px+3rem)] lg:-mt-[84px] lg:pt-[calc(84px+3.5rem)] lg:pb-16">
-        <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
-            <div className="flex flex-col items-start gap-5">
-              <Eyebrow className="animate-rise">{site.tagline}</Eyebrow>
-              <h1 className="animate-rise text-[2.25rem] leading-[1.08] font-bold sm:text-[3rem] lg:text-[3.5rem]" style={rise(80)}>
-                Your Health, <span className="text-primary">Our Expertise</span>
-              </h1>
-              <p className="animate-rise max-w-[540px] text-base leading-relaxed text-muted-foreground sm:text-lg lg:text-xl" style={rise(160)}>{hero.sub}</p>
-              <div className="animate-rise mt-1 grid w-full gap-3 sm:flex sm:w-auto" style={rise(240)}>
-                <Link href="/contact#request" className={buttonVariants({ size: "lg" })}>{hero.cta}</Link>
-                <CallButton className="h-11" />
-              </div>
-              <ul className="animate-rise mt-2 flex w-full flex-wrap gap-x-6 gap-y-2 border-t border-foreground/10 pt-5" style={rise(280)}>
-                {site.badges.map((b) => (
-                  <li key={b} className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80">
-                    <CheckCircleIcon weight="fill" className="size-4.5 text-primary" /> {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="animate-rise" style={rise(320)}>
-              <HeroCarousel slides={heroSlides} />
-            </div>
-          </div>
+      {/* Home hero: the minimal design (numbered 8 while comparing). Saved alternatives in components/home: HeroFindCare (search bar, design 2), HeroStacked (stacked photos, design 3), HeroCards (photo cards, design 4), HeroSplit (split screen, design 5), HeroBlob (soft blob, design 6), HeroPanorama (wide photo, design 7). */}
+      <HeroMinimal />
 
-          <dl style={rise(400)} className="animate-rise mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:mt-14 lg:grid-cols-4">
-            {stats.home.map(([value, label]) => (
-              <div key={label} className="rounded-xl bg-card p-5 ring-1 ring-foreground/8 sm:p-6">
-                <dt className="text-sm text-muted-foreground">{label}</dt>
-                <dd className="mt-1 text-3xl font-bold text-primary sm:text-4xl">{value}</dd>
+      {/* Three reasons families choose us, on a light green band right under the cover. */}
+      <section aria-label="Why families choose us" className="bg-sage">
+        <Container className="grid gap-8 py-10 md:grid-cols-3 md:gap-6 lg:py-12">
+          {heroPoints.map(({ icon: Glyph, title, text }) => (
+            <div key={title} className="flex gap-4">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-card text-primary shadow-xs"><Glyph weight="duotone" className="size-5" /></span>
+              <div>
+                <h2 className="font-sans text-lg font-semibold tracking-normal">{title}</h2>
+                <p className="mt-1 text-[0.9375rem] text-muted-foreground">{text}</p>
               </div>
-            ))}
-          </dl>
+            </div>
+          ))}
         </Container>
       </section>
 
       <section aria-label={compliance.title} className="border-b">
-        <Container className="grid grid-cols-2 gap-x-6 gap-y-4 py-6 lg:flex lg:items-center lg:justify-between">
+        <Container className="grid grid-cols-2 gap-x-6 gap-y-4 py-6 md:grid-cols-4 lg:flex lg:items-center lg:justify-between">
           {compliance.items.map((title, i) => {
             const Glyph = complianceIcons[i];
             return (
@@ -190,11 +164,11 @@ export default function HomePage() {
             sub="Medicare and most major plans are accepted. Our intake team checks your coverage before care begins, so there are no surprises."
           />
 
-          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5">
+          <ul className="grid grid-cols-2 gap-4 sm:flex sm:flex-wrap sm:justify-center lg:grid lg:grid-cols-5 lg:gap-5">
             {insurancePartners.accepted.map((name) => {
               const [file, width, height, brand] = insurerLogos[name];
               return (
-                <li key={name} className="flex flex-col items-center gap-4 rounded-2xl bg-background px-4 pt-8 pb-5 text-center ring-1 ring-foreground/6 transition duration-300 last:col-span-2 hover:-translate-y-1 hover:shadow-[0_20px_40px_-24px_rgb(18_48_29/0.45)] sm:last:col-span-1 motion-reduce:hover:translate-y-0">
+                <li key={name} className="flex flex-col items-center gap-4 rounded-2xl bg-background px-4 pt-8 pb-5 text-center ring-1 ring-foreground/6 transition duration-300 last:col-span-2 hover:-translate-y-1 sm:w-[calc((100%-2rem)/3)] lg:w-auto hover:shadow-[0_20px_40px_-24px_rgb(18_48_29/0.45)] sm:last:col-span-1 motion-reduce:hover:translate-y-0">
                   {/* Light tile behind the logo in dark mode only: several brand logos are dark ink and vanish on dark green. */}
                   <div className="flex h-12 w-full items-center justify-center sm:h-14 dark:h-14 dark:rounded-lg dark:bg-[#f8f5ee] dark:px-2 sm:dark:h-16 sm:dark:px-3">
                     <img src={`/images/insurers/${file}.svg`} width={width} height={height} alt={brand} loading="lazy" decoding="async" className="h-7 w-auto max-w-full object-contain sm:h-10 sm:max-w-[160px]" />
@@ -249,7 +223,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 py-16 lg:py-24">
+      <section id="faq" aria-labelledby="faq-title" className="scroll-mt-28 py-16 lg:py-24">
         <Container>
           <FaqSection items={faqs} />
         </Container>

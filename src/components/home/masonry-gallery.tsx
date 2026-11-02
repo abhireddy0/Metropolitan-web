@@ -7,7 +7,8 @@ export type GalleryItem = { slot: string; caption: string };
 
 // Row spans for a 3-column grid: tall tiles take 3 rows, wide ones 2. In this order every column
 // sums to 5 rows (col 1: 3+2, col 2: 2+3, col 3: 2+3), so the wall ends on one straight line.
-const spans = ["row-span-3", "row-span-2", "row-span-2", "row-span-3", "row-span-3", "row-span-2"];
+// The 2-column (sm) grid shortens the fourth tile so both columns sum to 7 rows (3+2+2, 2+2+3).
+const spans = ["row-span-3", "row-span-2", "row-span-2", "row-span-3 sm:row-span-2 lg:row-span-3", "row-span-3", "row-span-2"];
 
 const src = (slot: string) => `/images/${slot}.webp`;
 const srcSet = (slot: string) => `/images/${slot}-640.webp 640w, /images/${slot}.webp 1200w`;
@@ -93,7 +94,7 @@ export function MasonryGallery({ items }: { items: GalleryItem[] }) {
               width={1200}
               height={900}
               alt={items[open].caption}
-              className="block max-h-[78vh] w-auto max-w-[min(88vw,1100px)] rounded-xl object-contain shadow-[0_30px_80px_-20px_rgb(0_0_0/0.6)]"
+              className="block max-h-[78dvh] w-auto max-w-[min(88vw,1100px)] sm:max-w-[min(calc(100vw-10rem),1100px)] rounded-xl object-contain shadow-[0_30px_80px_-20px_rgb(0_0_0/0.6)]"
             />
             <figcaption className="flex items-center justify-between gap-4 text-white">
               <span className="text-base font-semibold sm:text-lg">{items[open].caption}</span>
