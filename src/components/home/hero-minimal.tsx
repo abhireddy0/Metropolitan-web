@@ -20,11 +20,12 @@ const avatar = `/images/avatars/${story.name.toLowerCase().replace(/\s+/g, "-")}
 export function HeroMinimal() {
   return (
     // The band starts under the (transparent) sticky header, so the top padding adds the header height back.
-    <section className="-mt-[70px] pt-[calc(70px+3rem)] pb-16 sm:pt-[calc(70px+4rem)] lg:-mt-[84px] lg:pt-[calc(84px+4.5rem)] lg:pb-24">
-      <Container className="grid items-center gap-16 lg:grid-cols-2 lg:gap-20">
-        <div className="max-w-[520px]">
+    <section className="-mt-[70px] pt-[calc(70px+3rem)] pb-16 sm:pt-[calc(70px+4rem)] lg:-mt-[84px] lg:pt-[calc(84px+3rem)] lg:pb-20">
+      {/* grid-cols-1 (minmax(0,1fr)) keeps the long pill row from widening the single phone column. */}
+      <Container className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+        <div className="max-w-[600px]">
           <p className="animate-rise text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase">Home health care in Chicagoland</p>
-          <h1 className="animate-rise mt-6 text-[2.5rem] leading-[1.08] font-semibold tracking-[-0.035em] sm:text-[3.25rem] xl:text-[3.75rem]" style={rise(80)}>
+          <h1 className="animate-rise mt-6 text-[2.5rem] leading-[1.08] font-semibold tracking-[-0.035em] sm:text-[3.5rem] lg:text-[4rem] xl:text-[4.5rem]" style={rise(80)}>
             Your Health,
             <br />
             <span className="bg-linear-to-r from-primary to-brand bg-clip-text pb-[0.06em] text-transparent">Our Expertise</span>
@@ -47,7 +48,7 @@ export function HeroMinimal() {
           </dl>
         </div>
 
-        <figure className="animate-rise relative m-0 mx-auto w-full max-w-[480px] lg:mr-0" style={rise(200)}>
+        <figure className="animate-rise relative m-0 mx-auto w-full max-w-[460px] lg:mr-0" style={rise(200)}>
           <img
             src="/images/services/health-aide.webp"
             srcSet="/images/services/health-aide-640.webp 640w, /images/services/health-aide.webp 1200w"
@@ -57,7 +58,7 @@ export function HeroMinimal() {
             alt="Home health aide holding hands with a smiling older woman"
             fetchPriority="high"
             decoding="async"
-            className="aspect-4/5 w-full rounded-[2rem] rounded-tr-[9rem] object-cover object-[65%_center] sm:rounded-tr-[12rem]"
+            className="aspect-4/5 w-full rounded-[2rem] lg:aspect-5/6 rounded-tr-[9rem] object-cover object-[65%_center] sm:rounded-tr-[12rem]"
           />
           <figcaption className="relative mx-4 -mt-24 rounded-2xl bg-card p-5 shadow-[0_30px_60px_-30px_rgb(18_48_29/0.45)] ring-1 ring-foreground/8 sm:mx-0 sm:-ml-10 sm:w-[340px] sm:p-6">
             <QuotesIcon aria-hidden weight="fill" className="size-7 text-brand/60" />
@@ -73,7 +74,7 @@ export function HeroMinimal() {
         </figure>
 
         {/* The services strip across the foot of the hero: a small label, then the pills. */}
-        <div className="animate-rise border-t pt-8 lg:col-span-2 lg:flex lg:items-start lg:gap-10" style={rise(360)}>
+        <div className="animate-rise min-w-0 border-t pt-8 lg:col-span-2 lg:flex lg:items-start lg:gap-10" style={rise(360)}>
           <p className="mb-4 shrink-0 text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase lg:mb-0 lg:w-36 lg:pt-3">Care we provide</p>
           <ServicePills className="min-w-0 lg:flex-1" />
         </div>
