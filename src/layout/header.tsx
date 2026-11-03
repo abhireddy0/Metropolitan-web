@@ -34,6 +34,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -51,7 +52,11 @@ export function SiteHeader() {
       <div className={cn("mx-auto flex h-full max-w-[1220px] items-center gap-5 rounded-b-2xl bg-background/90 px-4 ring-1 ring-foreground/8 backdrop-blur-md transition-shadow duration-300 sm:px-6 lg:px-8", scrolled && "shadow-[0_14px_34px_-18px_rgb(18_48_29/0.35)]")}>
         <Brand />
 
-        <NavigationMenu className="mx-auto hidden lg:flex">
+        <NavigationMenu
+          className="mx-auto hidden lg:flex"
+          value={activeMenu}
+          onValueChange={setActiveMenu}
+        >
           <NavigationMenuList className="gap-1">
             <NavigationMenuItem>
               <NavigationMenuTrigger className={linkStyle}>Services</NavigationMenuTrigger>
@@ -64,6 +69,7 @@ export function SiteHeader() {
                         <NavigationMenuLink
                           key={s.slug}
                           render={<Link href={`/services/${s.slug}`} />}
+                          closeOnClick
                           aria-current={isCurrent(`/services/${s.slug}`) ? "page" : undefined}
                           className="group/item flex flex-row items-center gap-3 rounded-lg px-3 py-2.5 text-[0.9375rem] font-medium text-foreground hover:bg-primary/6 hover:text-primary focus:bg-transparent focus-visible:bg-primary/6 aria-[current=page]:text-primary"
                         >
@@ -72,7 +78,7 @@ export function SiteHeader() {
                         </NavigationMenuLink>
                       ))}
                     </div>
-                    <NavigationMenuLink render={<Link href="/services" />} className="mt-1 inline-flex flex-row items-center gap-1.5 px-3 py-2 text-sm font-semibold text-primary hover:bg-transparent hover:underline focus:bg-transparent">
+                    <NavigationMenuLink render={<Link href="/services" />} closeOnClick className="mt-1 inline-flex flex-row items-center gap-1.5 px-3 py-2 text-sm font-semibold text-primary hover:bg-transparent hover:underline focus:bg-transparent">
                       View all services <ArrowRightIcon className="size-4" />
                     </NavigationMenuLink>
                   </div>
@@ -84,7 +90,7 @@ export function SiteHeader() {
                       <p className="text-sm text-muted-foreground">Tell us what you need and we&apos;ll build a care plan around it.</p>
                     </div>
                     <div className="grid gap-2">
-                      <NavigationMenuLink render={<Link href="/contact#request" />} className={cn(buttonVariants({ size: "sm" }), "w-full flex-row text-white hover:bg-cta/85")}>{hero.cta}</NavigationMenuLink>
+                      <NavigationMenuLink render={<Link href="/contact#request" />} closeOnClick className={cn(buttonVariants({ size: "sm" }), "w-full flex-row text-white hover:bg-cta/85")}>{hero.cta}</NavigationMenuLink>
                       <a href={tel(site.phone)} className="inline-flex items-center justify-center gap-2 py-1 text-sm font-semibold text-foreground hover:text-primary">
                         <PhoneIcon weight="duotone" className="size-4.5 text-primary" /> {site.phone}
                       </a>
