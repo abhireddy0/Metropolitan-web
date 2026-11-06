@@ -74,9 +74,9 @@ export function HeroMinimal() {
         </figure>
 
         {/* The services strip across the foot of the hero: a small label, then the pills. */}
-        <div className="animate-rise min-w-0 border-t pt-8 lg:col-span-2 lg:flex lg:items-start lg:gap-10" style={rise(360)}>
-          <p className="mb-4 shrink-0 text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase lg:mb-0 lg:w-36 lg:pt-3">Care we provide</p>
-          <ServicePills className="min-w-0 lg:flex-1" />
+        <div className="animate-rise min-w-0 border-t pt-8 lg:col-span-2 lg:flex lg:items-start lg:gap-8" style={rise(360)}>
+          <p className="mb-4 shrink-0 text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase lg:mb-0 lg:pt-3.5 lg:whitespace-nowrap">Care we provide</p>
+          <ServicePills loop className="min-w-0 lg:flex-1" />
         </div>
       </Container>
     </section>

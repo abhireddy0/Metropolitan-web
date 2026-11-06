@@ -225,6 +225,13 @@
   }
 }
 
+/* Endless sideways loop (home hero's service pills): the row holds two copies, so sliding by half returns to the start. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Underline that grows in from the left on hover (footer links). */
 @utility link-animated {
   background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat;
