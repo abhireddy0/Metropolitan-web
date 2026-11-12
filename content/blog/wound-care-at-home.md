@@ -1,7 +1,7 @@
 ---
 title: Wound Care at Home: Healing Safely
 summary: How to care for surgical and chronic wounds at home, and the signs that need a call to your nurse.
-date: 2025-10-10
+date: 2026-10-28
 updated: 2026-10-28
 author: Metropolitan clinical team
 category: Skilled Nursing

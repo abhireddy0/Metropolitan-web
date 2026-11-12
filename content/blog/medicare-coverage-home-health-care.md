@@ -1,8 +1,8 @@
 ---
 title: Understanding Medicare Coverage for Home Health Care
 summary: Who qualifies, what Medicare pays for, and what it does not cover, explained in plain language.
-date: 2025-10-10
-updated: 2026-10-28
+date: 2026-11-02
+updated: 2026-11-02
 author: Metropolitan clinical team
 category: Insurance & Benefits
 cover: /images/blog/medicare.webp

@@ -1,8 +1,8 @@
 ---
 title: Creating a Safe Home for an Older Loved One
 summary: Room-by-room changes that reduce the risk of falls and make daily life easier at home.
-date: 2025-10-10
-updated: 2026-10-28
+date: 2026-11-01
+updated: 2026-11-01
 author: Metropolitan clinical team
 category: Patient Safety
 cover: /images/blog/home-safety.webp

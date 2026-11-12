@@ -1,8 +1,8 @@
 ---
 title: Medication Management at Home: A Practical Guide
 summary: Simple systems that help prevent missed doses, double doses and dangerous interactions.
-date: 2025-10-10
-updated: 2026-10-28
+date: 2026-10-30
+updated: 2026-10-30
 author: Metropolitan clinical team
 category: Medication Management
 cover: /images/blog/medication.webp

@@ -1,8 +1,8 @@
 ---
 title: Managing Diabetes at Home
 summary: Daily habits, warning signs and how home health nurses help people stay on track.
-date: 2025-10-10
-updated: 2026-10-28
+date: 2026-10-29
+updated: 2026-10-29
 author: Metropolitan clinical team
 category: Chronic Care
 cover: /images/blog/diabetes.webp

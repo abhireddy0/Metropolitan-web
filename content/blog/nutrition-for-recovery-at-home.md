@@ -1,8 +1,8 @@
 ---
 title: Nutrition and Recovery at Home
 summary: Practical ways to eat well during recovery, even when appetite is low.
-date: 2025-10-10
-updated: 2026-10-28
+date: 2026-10-27
+updated: 2026-10-27
 author: Metropolitan clinical team
 category: Nutrition
 cover: /images/blog/nutrition.webp
