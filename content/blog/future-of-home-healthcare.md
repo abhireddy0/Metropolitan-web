@@ -1,8 +1,8 @@
 ---
 title: Technology and the Human Touch in Home Health Care
 summary: How modern tools support care at home, and why the relationship with your clinician still matters most.
-date: 2025-10-10
-updated: 2026-10-28
+date: 2026-10-25
+updated: 2026-10-25
 author: Metropolitan clinical team
 category: Home Care Today
 cover: /images/blog/technology.webp

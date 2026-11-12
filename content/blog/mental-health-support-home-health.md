@@ -1,8 +1,8 @@
 ---
 title: Emotional Wellbeing During Recovery at Home
 summary: Why emotional health matters for recovery, and how medical social workers support patients and families.
-date: 2025-10-10
-updated: 2026-10-28
+date: 2026-10-26
+updated: 2026-10-26
 author: Metropolitan clinical team
 category: Emotional Wellbeing
 cover: /images/blog/mental-health.webp

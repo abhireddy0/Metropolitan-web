@@ -1,8 +1,8 @@
 ---
 title: Physical Therapy at Home: Recovering Where You Live
 summary: Why in-home physical therapy works so well after surgery, a fall or a hospital stay, and what to expect.
-date: 2025-10-10
-updated: 2026-10-28
+date: 2026-10-31
+updated: 2026-10-31
 author: Metropolitan clinical team
 category: Physical Therapy
 cover: /images/blog/physical-therapy.webp
